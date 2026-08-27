@@ -53,7 +53,7 @@ window.PORTFOLIO_PROJECTS = [
     countLabel: "15+ 部广播剧",
     description: "北京大学 · 广播剧后期制作，涵盖剪辑、对白编辑、混音、音效与配乐。",
     collectionDescription: "这里集中展示燕语配音社期间参与制作的广播剧与声音作品。点击列表中的作品即可在当前页面播放。",
-    cover: "https://github.com/Williamgxhuang/Video/blob/main/assets/covers/%E4%B8%BB%E8%A7%86%E8%A7%89%E7%BB%BF%E8%89%B2.png",
+    cover: "assets/covers/YanYuMainCover.png",
 
     /*
        在下面 works 数组里继续复制项目即可。
