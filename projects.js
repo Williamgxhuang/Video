@@ -3,8 +3,9 @@
 
    普通作品：type 可省略，填写 cover + video。
    作品合集：设置 type: "collection"，并在 works: [ ] 里添加子作品。
+   合集首页会自动使用 works 中前 6 个子作品的封面组成“书册堆叠”，不需要单独制作合集大封面。
 
-   cover：封面路径，例如 assets/covers/文件名.webp
+   cover：普通作品封面路径，例如 assets/covers/文件名.webp；合集请填写每个 work.cover
    video：可填写 B站完整 BV/AV 链接，或 GitHub Release MP4 链接
    category：motion / sound / content / experimental
 
@@ -53,13 +54,13 @@ window.PORTFOLIO_PROJECTS = [
     countLabel: "15+ 部广播剧",
     description: "北京大学 · 广播剧后期制作，涵盖剪辑、对白编辑、混音、音效与配乐。",
     collectionDescription: "这里集中展示燕语配音社期间参与制作的广播剧与声音作品。点击列表中的作品即可在当前页面播放。",
-    cover: "assets/covers/YanYuMainCover.png",
 
     /*
        在下面 works 数组里继续复制项目即可。
        B站：video 填完整 https://www.bilibili.com/video/BV.../ 链接。
        GitHub Release：video 填 .mp4 的 Release Asset 地址。
        如果 work.cover 留空，B站视频会尝试自动读取封面。
+       首页最多预览前 6 个子作品封面，更多作品由 countLabel 显示总量。
     */
     works: [
       {
