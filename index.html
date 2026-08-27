@@ -1187,6 +1187,216 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
     }
+  
+
+    /* 合集首页：由子作品封面组成的“书册 / 文件夹”堆叠 */
+    .collection-card .work-media {
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(49,87,70,.09), transparent 48%),
+        linear-gradient(145deg, #f3f0e7 0%, #e7e0d1 55%, #ddd4c4 100%);
+    }
+    .collection-stack {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .collection-stack::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255,255,255,.72), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.07));
+      pointer-events: none;
+    }
+    .collection-stack-shelf {
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      bottom: 12.5%;
+      z-index: 1;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(72,74,67,.17), rgba(72,74,67,.035));
+      box-shadow: 0 15px 30px rgba(41,43,37,.12);
+      transform-origin: center;
+      transition: transform .4s ease, opacity .35s ease;
+    }
+    .collection-stack-count {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 8;
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      gap: 7px;
+      padding: 0 11px;
+      border: 1px solid rgba(28,32,29,.08);
+      border-radius: 999px;
+      background: rgba(251,250,247,.88);
+      color: var(--text);
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .055em;
+      backdrop-filter: blur(10px);
+    }
+    .collection-stack-count::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .collection-stack-note {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      z-index: 8;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(31,33,30,.76);
+      color: rgba(255,255,255,.9);
+      font-size: 10px;
+      letter-spacing: .04em;
+      backdrop-filter: blur(10px);
+      transition: opacity .2s ease, transform .3s ease;
+    }
+    .collection-stack-note::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(215,192,169,.96);
+      box-shadow: 0 0 0 4px rgba(215,192,169,.15);
+    }
+    .stack-item {
+      position: absolute;
+      left: var(--stack-left);
+      bottom: 17.5%;
+      z-index: var(--stack-z);
+      width: var(--stack-width);
+      height: 61%;
+      min-width: 64px;
+      overflow: hidden;
+      border: 1px solid rgba(28,32,29,.07);
+      border-radius: 13px 13px 9px 9px;
+      background: #ebe7de;
+      box-shadow: 0 17px 34px rgba(41,43,37,.13);
+      transform: rotate(var(--stack-rotate)) translateY(var(--stack-y));
+      transform-origin: center bottom;
+      transition:
+        left .45s cubic-bezier(.2,.72,.2,1),
+        transform .45s cubic-bezier(.2,.72,.2,1),
+        box-shadow .35s ease,
+        filter .35s ease,
+        opacity .25s ease;
+      will-change: transform, left;
+    }
+    .stack-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.14));
+      pointer-events: none;
+    }
+    .stack-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s cubic-bezier(.2,.72,.2,1);
+    }
+    .stack-spine {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 3;
+      width: 11px;
+      background: linear-gradient(180deg, rgba(37,40,36,.18), rgba(37,40,36,.025));
+      border-right: 1px solid rgba(255,255,255,.24);
+      pointer-events: none;
+    }
+    .stack-label {
+      position: absolute;
+      left: 11px;
+      right: 9px;
+      bottom: 10px;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      color: rgba(255,255,255,.94);
+      text-shadow: 0 2px 12px rgba(0,0,0,.38);
+      pointer-events: none;
+    }
+    .stack-label strong {
+      display: -webkit-box;
+      overflow: hidden;
+      font-size: 10px;
+      line-height: 1.25;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+    .stack-label span { font-size: 9px; opacity: .82; }
+    .stack-item.is-placeholder {
+      display: flex;
+      align-items: flex-end;
+      background:
+        linear-gradient(145deg, rgba(49,87,70,.10), transparent 58%),
+        linear-gradient(315deg, rgba(155,104,68,.08), transparent 52%),
+        #e2ddd2;
+      color: #686c65;
+    }
+    .stack-item.is-placeholder .stack-label { color: #5e625b; text-shadow: none; }
+    .stack-item.is-placeholder .stack-label strong { font-size: 11px; }
+
+    .collection-card:hover .stack-item {
+      left: var(--stack-hover-left);
+      transform: rotate(var(--stack-hover-rotate)) translateY(var(--stack-hover-y));
+      box-shadow: 0 24px 46px rgba(41,43,37,.18);
+    }
+    .collection-card:hover .stack-item img { transform: scale(1.025); }
+    .collection-card:hover .collection-stack-shelf { transform: scaleX(1.025); opacity: .9; }
+    .collection-card:hover .collection-stack-note { transform: translateY(-2px); }
+
+    .collection-card.is-opening .stack-item {
+      left: var(--stack-open-left);
+      transform: rotate(var(--stack-open-rotate)) translateY(-24px) scale(1.015);
+      box-shadow: 0 28px 52px rgba(41,43,37,.19);
+    }
+    .collection-card.is-opening .collection-stack-shelf { transform: scaleX(1.06); opacity: .62; }
+    .collection-card.is-opening .collection-stack-count,
+    .collection-card.is-opening .collection-stack-note,
+    .collection-card.is-opening .media-chip,
+    .collection-card.is-opening .media-play,
+    .collection-card.is-opening::after { opacity: 0; }
+    .collection-card .media-play { min-width: 118px; }
+
+    @media (hover: none) {
+      .collection-card .stack-item {
+        left: var(--stack-hover-left);
+        transform: rotate(var(--stack-hover-rotate)) translateY(var(--stack-hover-y));
+      }
+    }
+    @media (max-width: 760px) {
+      .stack-item { min-width: 58px; border-radius: 11px 11px 8px 8px; }
+      .stack-spine { width: 8px; }
+      .stack-label { left: 8px; right: 6px; bottom: 7px; }
+      .stack-label strong { font-size: 9px; }
+      .stack-label span { display: none; }
+      .collection-stack-count { top: 13px; right: 13px; }
+      .collection-stack-note { left: 13px; bottom: 13px; padding: 7px 10px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1594,21 +1804,39 @@
         }
       }
 
+      var resolvedVideoMetaCache = {};
+
       async function resolveVideoLink(rawUrl) {
         var value = String(rawUrl || "").trim();
         if (!value) throw new Error("请先粘贴视频链接。");
         if (!/^https?:\/\//i.test(value)) value = "https://" + value;
         var parsedUrl;
         try { parsedUrl = new URL(value); } catch (e) { throw new Error("链接格式不正确。"); }
-        var bili = parseBilibiliId(value); if (bili) return resolveBilibili(value, bili);
-        var yt = parseYouTubeId(value); if (yt) return resolveYouTube(value, yt);
-        var vm = parseVimeoId(value); if (vm) return resolveVimeo(value, vm);
-        if (/\.(mp4|webm|ogg|m4v|mov)(?:$|[?#])/i.test(parsedUrl.pathname + parsedUrl.search + parsedUrl.hash)) return { kind: "video", provider: "视频直链", originalUrl: value, sourceUrl: value, thumbnail: "", title: "链接视频", description: "视频直链 · 浏览器原生播放", durationLabel: "视频" };
-        if (metaEndpoint) {
-          var proxy = await getProxyMeta(value);
-          return { kind: proxy.kind || (proxy.embedUrl ? "embed" : "external"), provider: proxy.provider || "网页视频", originalUrl: value, embedUrl: proxy.embedUrl || "", sourceUrl: proxy.sourceUrl || "", thumbnail: proxy.thumbnail || proxy.thumbnailUrl || "", title: proxy.title || "网页视频", description: proxy.description || "外部视频链接", durationLabel: proxy.durationLabel || "链接" };
+        var cacheKey = parsedUrl.toString();
+        if (resolvedVideoMetaCache[cacheKey]) return resolvedVideoMetaCache[cacheKey];
+
+        var result;
+        var bili = parseBilibiliId(value);
+        if (bili) result = await resolveBilibili(value, bili);
+        else {
+          var yt = parseYouTubeId(value);
+          if (yt) result = await resolveYouTube(value, yt);
+          else {
+            var vm = parseVimeoId(value);
+            if (vm) result = await resolveVimeo(value, vm);
+            else if (/\.(mp4|webm|ogg|m4v|mov)(?:$|[?#])/i.test(parsedUrl.pathname + parsedUrl.search + parsedUrl.hash)) {
+              result = { kind: "video", provider: "视频直链", originalUrl: value, sourceUrl: value, thumbnail: "", title: "链接视频", description: "视频直链 · 浏览器原生播放", durationLabel: "视频" };
+            } else if (metaEndpoint) {
+              var proxy = await getProxyMeta(value);
+              result = { kind: proxy.kind || (proxy.embedUrl ? "embed" : "external"), provider: proxy.provider || "网页视频", originalUrl: value, embedUrl: proxy.embedUrl || "", sourceUrl: proxy.sourceUrl || "", thumbnail: proxy.thumbnail || proxy.thumbnailUrl || "", title: proxy.title || "网页视频", description: proxy.description || "外部视频链接", durationLabel: proxy.durationLabel || "链接" };
+            } else {
+              result = { kind: "external", provider: "网页链接", originalUrl: value, thumbnail: "", title: "网页视频", description: "该站点暂时无法直接读取封面或播放器，作品卡片会保留原始链接。", durationLabel: "链接" };
+            }
+          }
         }
-        return { kind: "external", provider: "网页链接", originalUrl: value, thumbnail: "", title: "网页视频", description: "该站点暂时无法直接读取封面或播放器，作品卡片会保留原始链接。", durationLabel: "链接" };
+
+        resolvedVideoMetaCache[cacheKey] = result;
+        return result;
       }
 
       function renderLinkPreview(meta) {
@@ -1766,37 +1994,129 @@
         return placeholder;
       }
 
-      async function addCollectionCover(base, project) {
+      function createStackPreviewEntry(work, thumbnail, index) {
+        return {
+          title: (work && work.title) || ("作品 " + String(index + 1).padStart(2, "0")),
+          subtitle: (work && (work.year || work.role)) || "",
+          thumbnail: thumbnail || ""
+        };
+      }
+
+      function stackGeometry(index, count) {
+        var width = count <= 1 ? 42 : count === 2 ? 34 : count === 3 ? 29 : count === 4 ? 25 : count === 5 ? 23 : 21;
+        var edge = 7;
+        var available = 100 - edge * 2 - width;
+        var step = count <= 1 ? 0 : available / (count - 1);
+        var left = count <= 1 ? (100 - width) / 2 : edge + step * index;
+        var center = (count - 1) / 2;
+        var delta = index - center;
+        var spread = count <= 1 ? 0 : Math.min(2.2, 8 / Math.max(1, count - 1));
+        return {
+          width: width.toFixed(2) + "%",
+          left: left.toFixed(2) + "%",
+          hoverLeft: Math.max(2, Math.min(98 - width, left + delta * spread)).toFixed(2) + "%",
+          openLeft: Math.max(0, Math.min(100 - width, left + delta * spread * 2.2)).toFixed(2) + "%",
+          rotate: (delta * 1.8).toFixed(2) + "deg",
+          hoverRotate: (delta * 2.5).toFixed(2) + "deg",
+          openRotate: (delta * 3.0).toFixed(2) + "deg",
+          y: (Math.abs(delta) * 1.6 + 3).toFixed(2) + "px",
+          hoverY: (Math.abs(delta) * 1.4 - 5).toFixed(2) + "px",
+          z: String(index + 2)
+        };
+      }
+
+      function replaceStackItemVisual(item, preview) {
+        var existingImg = item.querySelector("img");
+        if (existingImg) existingImg.remove();
+        item.classList.toggle("is-placeholder", !preview.thumbnail);
+        if (preview.thumbnail) {
+          var img = document.createElement("img");
+          img.src = preview.thumbnail;
+          img.alt = preview.title + " 封面";
+          img.loading = "lazy";
+          img.referrerPolicy = "no-referrer";
+          item.insertBefore(img, item.querySelector(".stack-label"));
+        }
+      }
+
+      function renderCollectionStack(media, project) {
+        var works = Array.isArray(project.works) ? project.works.slice(0, 6) : [];
+        if (!works.length) return false;
+
+        var stack = document.createElement("div");
+        stack.className = "collection-stack";
+        stack.setAttribute("aria-hidden", "true");
+
+        var count = document.createElement("span");
+        count.className = "collection-stack-count";
+        count.textContent = collectionCountLabel(project);
+        stack.appendChild(count);
+
+        works.forEach(function (work, index) {
+          work = work || {};
+          var geometry = stackGeometry(index, works.length);
+          var preview = createStackPreviewEntry(work, work.cover || "", index);
+          var item = document.createElement("div");
+          item.className = "stack-item" + (preview.thumbnail ? "" : " is-placeholder");
+          item.style.setProperty("--stack-width", geometry.width);
+          item.style.setProperty("--stack-left", geometry.left);
+          item.style.setProperty("--stack-hover-left", geometry.hoverLeft);
+          item.style.setProperty("--stack-open-left", geometry.openLeft);
+          item.style.setProperty("--stack-rotate", geometry.rotate);
+          item.style.setProperty("--stack-hover-rotate", geometry.hoverRotate);
+          item.style.setProperty("--stack-open-rotate", geometry.openRotate);
+          item.style.setProperty("--stack-y", geometry.y);
+          item.style.setProperty("--stack-hover-y", geometry.hoverY);
+          item.style.setProperty("--stack-z", geometry.z);
+
+          var spine = document.createElement("span");
+          spine.className = "stack-spine";
+          item.appendChild(spine);
+
+          if (preview.thumbnail) replaceStackItemVisual(item, preview);
+
+          var label = document.createElement("div");
+          label.className = "stack-label";
+          var strong = document.createElement("strong");
+          strong.textContent = preview.title;
+          label.appendChild(strong);
+          if (preview.subtitle) {
+            var sub = document.createElement("span");
+            sub.textContent = preview.subtitle;
+            label.appendChild(sub);
+          }
+          item.appendChild(label);
+          stack.appendChild(item);
+
+          if (!preview.thumbnail && work.video) {
+            resolveVideoLink(work.video).then(function (meta) {
+              if (!meta || !meta.thumbnail) return;
+              replaceStackItemVisual(item, createStackPreviewEntry(work, meta.thumbnail, index));
+            }).catch(function (error) {
+              console.warn("无法读取合集子作品封面：", work.video, error);
+            });
+          }
+        });
+
+        var shelf = document.createElement("div");
+        shelf.className = "collection-stack-shelf";
+        stack.appendChild(shelf);
+
+        var note = document.createElement("div");
+        note.className = "collection-stack-note";
+        note.textContent = "点击展开作品列表";
+        stack.appendChild(note);
+
+        media.insertBefore(stack, media.firstChild);
+        return true;
+      }
+
+      function addCollectionCover(base, project) {
+        if (renderCollectionStack(base.media, project)) return;
+        /* 只有合集还没有子作品时，才允许使用 project.cover 作为兜底。 */
         if (project.cover) {
           addCoverOrPlaceholder(base.media, project.cover, project.title || collectionDisplayTitle(project));
           return;
-        }
-        var works = Array.isArray(project.works) ? project.works : [];
-        var firstWithCover = works.find(function (work) { return work && work.cover; });
-        if (firstWithCover) {
-          addCoverOrPlaceholder(base.media, firstWithCover.cover, project.title || collectionDisplayTitle(project));
-          return;
-        }
-        var firstWithVideo = works.find(function (work) { return work && work.video; });
-        if (firstWithVideo) {
-          try {
-            var meta = await resolveVideoLink(firstWithVideo.video);
-            if (meta.thumbnail) {
-              addCoverOrPlaceholder(base.media, meta.thumbnail, project.title || collectionDisplayTitle(project));
-              return;
-            }
-            if (meta.posterEmbedUrl) {
-              var poster = document.createElement("iframe");
-              poster.src = meta.posterEmbedUrl;
-              poster.title = (project.title || collectionDisplayTitle(project)) + " 合集封面";
-              poster.loading = "lazy";
-              poster.tabIndex = -1;
-              base.media.insertBefore(poster, base.media.firstChild);
-              return;
-            }
-          } catch (error) {
-            console.warn("无法读取合集首个作品封面：", error);
-          }
         }
         addCollectionPlaceholder(base.media, project);
       }
@@ -1879,6 +2199,20 @@
         }
       }
 
+      function triggerCollectionOpen(project, card) {
+        if (!card) { openCollection(project); return; }
+        if (card.__openingCollection) return;
+        var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduced) { openCollection(project); return; }
+        card.__openingCollection = true;
+        card.classList.add("is-opening");
+        setTimeout(function () {
+          card.classList.remove("is-opening");
+          card.__openingCollection = false;
+          openCollection(project);
+        }, 360);
+      }
+
       function openCollection(project) {
         var works = Array.isArray(project.works) ? project.works : [];
         worksHead.hidden = true;
@@ -1942,7 +2276,7 @@
         var category = project.category || "sound";
         var base = createCardBase(title, category, project.year || "", project.description || "", project.label || "作品合集");
         base.card.classList.add("collection-card");
-        await addCollectionCover(base, project);
+        addCollectionCover(base, project);
 
         var collectionTag = document.createElement("span");
         collectionTag.className = "collection-tag";
@@ -1952,20 +2286,23 @@
         var open = document.createElement("button");
         open.className = "media-play";
         open.type = "button";
-        open.textContent = "查看全部";
-        open.addEventListener("click", function () { openCollection(project); });
+        open.textContent = "展开合集";
+        open.addEventListener("click", function (event) {
+          event.stopPropagation();
+          triggerCollectionOpen(project, base.card);
+        });
         base.media.appendChild(open);
         base.card.tabIndex = 0;
         base.card.setAttribute("role", "button");
         base.card.setAttribute("aria-label", "打开" + (project.title || title) + "作品合集");
         base.card.addEventListener("click", function (event) {
           if (event.target.closest("button, a, iframe, video")) return;
-          openCollection(project);
+          triggerCollectionOpen(project, base.card);
         });
         base.card.addEventListener("keydown", function (event) {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            openCollection(project);
+            triggerCollectionOpen(project, base.card);
           }
         });
         workGrid.appendChild(base.card);
