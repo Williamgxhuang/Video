@@ -75,7 +75,7 @@ window.PORTFOLIO_PROJECTS = [
     countLabel: "15+ 部广播剧",
     description: "北京大学 · 广播剧后期作品合集，涵盖剪辑、混音、音效与配乐。",
     collectionDescription: "这里集中展示燕语配音社时期参与制作的广播剧作品。点击列表中的任意作品即可在当前页面播放。",
-    cover: "",
+    cover: "https://github.com/Williamgxhuang/Video/blob/main/assets/covers/%E4%B8%BB%E8%A7%86%E8%A7%89%E7%BB%BF%E8%89%B2.png",
     works: [
        {
        title: "【互动游戏】我在北大竟然活不过一天？！| 恋爱生存互动游戏｜沙雕预警｜北京大学燕语配音社出品",
