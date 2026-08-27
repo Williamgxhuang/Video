@@ -35,14 +35,14 @@ window.PORTFOLIO_PROJECTS = [
     video: "https://www.bilibili.com/video/BV1AFC8YBEAR"
   },
   {
-    title: "垂媒论坛",
-    englishTitle: "SEARCHLIGHT",
+    title: "微电影-如果可以重来",
+    englishTitle: "IF REWIND",
     year: "2025",
-    category: "content",
-    label: "内容运营",
-    description: "汽车之家 · 内容运营：92 篇内容，12 篇亮点内容。",
+    category: "video",
+    label: "课程作业",
+    description: "担任剪辑师、主编剧和副导演。",
     cover: "",
-    video: ""
+    video: "https://github.com/Williamgxhuang/Video/releases/download/Media/8.27.1.mp4"
   },
   {
     type: "collection",
