@@ -1,21 +1,15 @@
 /* ============================================================
    GX/HUANG 正式作品配置
 
-   以后新增、删除、修改作品，只需要编辑这个文件。
+   普通作品：type 可省略，填写 cover + video。
+   作品合集：设置 type: "collection"，并在 works: [ ] 里添加子作品。
 
-   支持两种项目：
-   1) 普通视频：type: "video"（也可以省略 type）
-   2) 作品合集：type: "collection"，在 works: [ ] 中放很多子作品
-
-   cover：封面路径，推荐 assets/covers/文件名.webp
-          如果 video 填的是 B站链接，cover 留空时会自动尝试读取 B站封面。
-          合集 cover 留空时，会尝试读取合集里第一个视频的封面。
-          手动填写 cover 时，始终优先使用你自己的封面。
-
-   video：支持 GitHub Release MP4 直链，也支持 B站完整 BV/AV 视频链接。
-          B站建议使用 https://www.bilibili.com/video/BV... 这种完整链接。
-
+   cover：封面路径，例如 assets/covers/文件名.webp
+   video：可填写 B站完整 BV/AV 链接，或 GitHub Release MP4 链接
    category：motion / sound / content / experimental
+
+   B站链接：cover 留空时，页面会尝试自动读取视频封面。
+   没有封面或视频时，填空字符串 ""。
    ============================================================ */
 
 window.PORTFOLIO_PROJECTS = [
@@ -49,22 +43,6 @@ window.PORTFOLIO_PROJECTS = [
     cover: "",
     video: ""
   },
-
-  /* ----------------------------------------------------------
-     作品合集示例：燕语配音社
-
-     以后增加一部广播剧，只需要在 works 里面复制一条：
-
-     {
-       title: "广播剧名称",
-       year: "2023",
-       role: "剪辑 / 混音 / 音效",
-       description: "可选：补充一句作品说明",
-       video: "https://www.bilibili.com/video/BVxxxxxxxxxx/"
-     }
-
-     video 也可以换成 GitHub Release 的 MP4 链接。
-     ---------------------------------------------------------- */
   {
     type: "collection",
     title: "燕语配音社",
@@ -73,17 +51,41 @@ window.PORTFOLIO_PROJECTS = [
     category: "sound",
     label: "广播剧后期",
     countLabel: "15+ 部广播剧",
-    description: "北京大学 · 广播剧后期作品合集，涵盖剪辑、混音、音效与配乐。",
-    collectionDescription: "这里集中展示燕语配音社时期参与制作的广播剧作品。点击列表中的任意作品即可在当前页面播放。",
+    description: "北京大学 · 广播剧后期制作，涵盖剪辑、对白编辑、混音、音效与配乐。",
+    collectionDescription: "这里集中展示燕语配音社期间参与制作的广播剧与声音作品。点击列表中的作品即可在当前页面播放。",
     cover: "https://github.com/Williamgxhuang/Video/blob/main/assets/covers/%E4%B8%BB%E8%A7%86%E8%A7%89%E7%BB%BF%E8%89%B2.png",
+
+    /*
+       在下面 works 数组里继续复制项目即可。
+       B站：video 填完整 https://www.bilibili.com/video/BV.../ 链接。
+       GitHub Release：video 填 .mp4 的 Release Asset 地址。
+       如果 work.cover 留空，B站视频会尝试自动读取封面。
+    */
     works: [
-       {
-       title: "【互动游戏】我在北大竟然活不过一天？！| 恋爱生存互动游戏｜沙雕预警｜北京大学燕语配音社出品",
-       year: "2020",
-       role: "剪辑 / 混音 / 音效",
-       description: "较早期作品，利用AE实现类GALGAME效果互动视频",
-       video: "bilibili.com/video/BV1a7411R7aM"
-     }
+      {
+        title: "【互动游戏】我在北大竟然活不过一天？！| 恋爱生存互动游戏｜沙雕预警｜北京大学燕语配音社出品",
+        year: "2020",
+        role: "剪辑 / 混音 / 音效",
+        description: "较早期作品，利用AE实现类GALGAME效果互动视频",
+        cover: "",
+        video: "bilibili.com/video/BV1a7411R7aM"
+      },
+      {
+        title: "广播剧作品 02",
+        year: "2022",
+        role: "后期剪辑 / 配乐",
+        description: "把这里替换成作品简介。",
+        cover: "",
+        video: ""
+      },
+      {
+        title: "广播剧作品 03",
+        year: "2021",
+        role: "对白编辑 / 混音",
+        description: "把这里替换成作品简介。",
+        cover: "",
+        video: ""
+      }
     ]
   }
 ];
