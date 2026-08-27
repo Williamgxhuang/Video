@@ -29,7 +29,7 @@ window.PORTFOLIO_PROJECTS = [
     label: "声音设计",
     description: "RCA 毕业动画 · 音效与混音；入围第七届寻光小宇宙奖。",
     cover: "",
-    video: ""
+    video: "https://www.bilibili.com/video/BV1AFC8YBEAR/"
   },
   {
     title: "垂媒论坛",
