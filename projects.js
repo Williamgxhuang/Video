@@ -40,7 +40,7 @@ window.PORTFOLIO_PROJECTS = [
     year: "2025",
     category: "video",
     label: "课程作业",
-    description: "担任剪辑师、主编剧和副导演。",
+    description: "复旦大学硕士·人际传播课程 - 担任剪辑师、主编剧和副导演。",
     cover: "",
     video: "https://github.com/Williamgxhuang/Video/releases/download/Media/8.27.1.mp4"
   },
