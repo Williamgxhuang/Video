@@ -974,6 +974,216 @@
       .work-info { padding: 20px 19px 22px; }
       .upload-panel { padding: 34px 26px; }
     }
+
+
+    /* 合集详情：与统一画廊保持一致的展览目录式视觉 */
+    .collection-view {
+      padding-top: 2px;
+    }
+    .collection-toolbar {
+      margin-bottom: 42px;
+    }
+    .collection-back {
+      min-height: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #747970;
+      font-size: 12px;
+      letter-spacing: .03em;
+    }
+    .collection-back:hover {
+      transform: translateX(-3px);
+      border-color: transparent;
+      color: var(--accent);
+    }
+    .collection-hero {
+      align-items: start;
+      gap: 54px;
+      padding: 0 0 42px;
+      border-bottom: 1px solid rgba(28,32,29,.12);
+    }
+    .collection-eyebrow {
+      margin-bottom: 14px;
+      color: #8c705d;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .collection-title {
+      max-width: 860px;
+      font-size: clamp(40px, 6vw, 78px);
+      font-weight: 680;
+      letter-spacing: -.065em;
+    }
+    .collection-description {
+      max-width: 680px;
+      margin-top: 22px;
+      color: #73776f;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+    .collection-count {
+      min-height: auto;
+      padding: 8px 0 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #7b8078;
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+    }
+    .collection-player {
+      display: block;
+      margin: 42px 0 8px;
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .collection-player-media {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid rgba(28,32,29,.12);
+      border-radius: 16px;
+      background: #111412;
+      box-shadow: 0 18px 54px rgba(31,35,31,.10);
+    }
+    .collection-player-copy {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 28px;
+      padding: 20px 2px 0;
+      color: var(--text);
+    }
+    .collection-player-copy small {
+      color: #999b94;
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+    .collection-player-copy h3 {
+      margin: 8px 0 8px;
+      color: var(--text);
+      font-size: clamp(22px, 2.6vw, 32px);
+      letter-spacing: -.035em;
+    }
+    .collection-player-copy p {
+      max-width: 700px;
+      color: #767a72;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .collection-player-link {
+      align-self: end;
+      color: var(--accent);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .collection-list {
+      margin-top: 46px;
+      border-top: 1px solid rgba(28,32,29,.14);
+    }
+    .collection-item {
+      grid-template-columns: 52px minmax(0, 1fr) 82px 74px;
+      gap: 22px;
+      min-height: 100px;
+      padding: 22px 2px;
+      border-bottom: 1px solid rgba(28,32,29,.105);
+      transition: background .2s ease, padding .2s ease, color .2s ease;
+    }
+    .collection-item.is-active {
+      margin: 0;
+      padding-left: 14px;
+      padding-right: 14px;
+      background: rgba(49,87,70,.05);
+    }
+    .collection-index {
+      color: #aaa9a2;
+      font-size: 10px;
+    }
+    .collection-item-main h3 {
+      margin-bottom: 7px;
+      font-size: 17px;
+      font-weight: 630;
+      letter-spacing: -.025em;
+    }
+    .collection-item-main p {
+      color: #7d8079;
+      font-size: 12px;
+    }
+    .collection-item-year {
+      color: #92745f;
+      font-size: 10px;
+      letter-spacing: .06em;
+    }
+    .collection-play {
+      min-width: 0;
+      min-height: 34px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #525851;
+      font-size: 11px;
+      text-align: right;
+    }
+    .collection-play:not(:disabled)::after {
+      content: "  ↗";
+      color: var(--accent);
+    }
+    .collection-play:hover:not(:disabled) {
+      border-color: transparent;
+      background: transparent;
+      color: var(--accent);
+    }
+    .collection-play:disabled {
+      color: #b1b2ac;
+    }
+    .collection-empty {
+      padding: 34px 2px;
+      color: #858981;
+      font-size: 13px;
+    }
+
+    @media (max-width: 880px) {
+      .collection-hero { gap: 24px; }
+      .collection-player-copy { grid-template-columns: 1fr; padding: 18px 2px 0; }
+      .collection-player-link { justify-self: start; }
+      .collection-item { grid-template-columns: 40px minmax(0, 1fr) 70px; }
+      .collection-item-year { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      .collection-toolbar { margin-bottom: 30px; }
+      .collection-hero { grid-template-columns: 1fr; padding-bottom: 32px; }
+      .collection-title { font-size: clamp(38px, 12vw, 56px); }
+      .collection-count { padding-top: 0; }
+      .collection-player { margin-top: 30px; }
+      .collection-player-media { border-radius: 12px; }
+      .collection-item {
+        grid-template-columns: 32px minmax(0, 1fr);
+        gap: 12px;
+        padding: 19px 0;
+      }
+      .collection-item.is-active {
+        margin: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .collection-play {
+        grid-column: 2;
+        justify-self: start;
+        min-width: auto;
+        min-height: 30px;
+        text-align: left;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
     }
