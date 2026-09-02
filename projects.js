@@ -15,14 +15,14 @@
 
 window.PORTFOLIO_PROJECTS = [
   {
-    title: "智行中国",
-    englishTitle: "SMART ROAD",
+    title: "品牌宣传视频",
+    englishTitle: "Momenta",
     year: "2025",
     category: "motion",
     label: "品牌影像",
     description: "Momenta · 10+ 支品牌视频与发布会内容；单项目全网 1200w+ 曝光。",
     cover: "",
-    video: ""
+    video: "https://v.douyin.com/tLzdEHUO304/"
   },
   {
     title: "偷作业的贼",
@@ -47,12 +47,13 @@ window.PORTFOLIO_PROJECTS = [
   {
     type: "collection",
     title: "燕语配音社（某亦声工作室）/优思铭想工作室",
-    englishTitle: "VOICE / AUDIO",
+    englishTitle: "VIDEO / AUDIO",
     year: "2019–23",
     category: "sound",
     label: "视频/广播剧后期",
     countLabel: "15+ 部广播剧",
-    description: "北京大学燕语配音社丨技术部部长：涵盖广播剧后期制作、视频剪辑；  优思铭想工作室：广播剧后期制作，对白编辑、混音、音效与配乐",
+    description: "北京大学燕语配音社丨技术部部长：涵盖广播剧后期制作、视频剪辑；
+       优思铭想工作室：广播剧后期制作，对白编辑、混音、音效与配乐",
     collectionDescription: "这里集中展示在燕语配音社（某亦声工作室）/优思铭想工作室期间参与制作的广播剧与声音作品。点击列表中的作品即可在当前页面播放。",
 
     /*
@@ -76,7 +77,7 @@ window.PORTFOLIO_PROJECTS = [
         year: "2022",
         role: "音频总后期",
         description: "她在深渊中挣扎，她逆光而来，她跟着那道光，看到了新的希望，也借着那道光，成为了她理想中的自己。",
-        cover: "raw.githubusercontent.com/Williamgxhuang/Video/assets/covers//1788381407157.jpg",
+        cover: "raw.githubusercontent.com/Williamgxhuang/Video/assets/covers/1788381407157.jpg",
         video: "https://github.com/Williamgxhuang/Video/releases/download/Media/Niguang.wav"
       },
       {
