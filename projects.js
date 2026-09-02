@@ -18,7 +18,7 @@
 window.NFRAME_META_ENDPOINT = "https://douyin.hultbergdeister814.workers.dev/";
 
 /* 本地缓存版本。以后真想强制全部重新读取，把 v1 改成 v2 即可。 */
-window.NFRAME_META_CACHE_VERSION = "v1";
+window.NFRAME_META_CACHE_VERSION = "v2";
 
 window.PORTFOLIO_PROJECTS = [
   {
