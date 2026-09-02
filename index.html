@@ -608,7 +608,35 @@
       base.card.classList.add("collection-card");
       var stack=document.createElement("div");stack.className="collection-stack";
       (project.works||[]).slice(0,3).forEach(function(work,i){
-        var item=document.createElement("div"),label=document.createElement("div");item.className="stack-item"+(work.cover?"":" is-placeholder");item.style.setProperty("--r",[-5,0,5][i]||"0deg");item.style.setProperty("--y",(i===1?"-8px":"0"));label.className="stack-label";label.textContent=work.title||"作品";item.appendChild(label);if(work.cover){var img=document.createElement("img");img.src=normalizeUrl(work.cover);img.loading="lazy";item.insertBefore(img,label)}stack.appendChild(item);
+        var item=document.createElement("div"),label=document.createElement("div");
+        item.className="stack-item"+(work.cover?"":" is-placeholder");
+        item.style.setProperty("--r",[-5,0,5][i]||"0deg");
+        item.style.setProperty("--y",(i===1?"-8px":"0"));
+        label.className="stack-label";
+        label.textContent=work.title||"作品";
+        item.appendChild(label);
+        stack.appendChild(item);
+
+        function setStackCover(url){
+          if(!url)return;
+          var old=item.querySelector("img");
+          if(old)old.remove();
+          var img=document.createElement("img");
+          img.src=normalizeUrl(url);
+          img.alt=(work.title||"作品")+" 封面";
+          img.loading="lazy";
+          img.referrerPolicy="no-referrer";
+          item.insertBefore(img,label);
+          item.classList.remove("is-placeholder");
+        }
+
+        if(work.cover){
+          setStackCover(work.cover);
+        }else if(work.video){
+          resolveVideoLink(work.video).then(function(meta){
+            if(meta&&meta.thumbnail)setStackCover(meta.thumbnail);
+          }).catch(function(){});
+        }
       });
       base.media.insertBefore(stack,base.media.firstChild);
       var tag=document.createElement("span");tag.className="collection-tag";tag.textContent=collectionCountText(project)+" · 查看完整列表 →";base.copy.appendChild(tag);
