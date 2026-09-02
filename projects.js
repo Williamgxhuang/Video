@@ -78,9 +78,6 @@ window.PORTFOLIO_PROJECTS = [
       stats: {
         view: 218457,
         like: 1188,
-        favorite: 0,
-        reply: 21,
-        share: 16
       },
 
       douyinVideoId:
