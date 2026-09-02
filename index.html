@@ -421,6 +421,41 @@
       }catch(e){return""}
     }
 
+    var STATIC_VIDEO_META = {
+      "https://v.douyin.com/tLzdEHUO304/": {
+        kind:"embed",
+        provider:"抖音",
+        originalUrl:"https://www.douyin.com/video/7524272704455920932",
+        embedUrl:"https://open.douyin.com/player/video?vid=7524272704455920932&autoplay=1",
+        posterEmbedUrl:"https://open.douyin.com/player/video?vid=7524272704455920932&autoplay=0",
+        thumbnail:"",
+        title:"“Momenta智行中国”青岛篇来啦! “红瓦绿树相映衬，碧海蓝天对岛城。”漫步八大关，穿行老街巷，这次我们来到了海滨之城——青岛。 辅助驾驶中国行，丈量哪里你来定: 评论区告诉我，下一站想去哪儿！#Momenta飞轮大模型 #青岛 #青岛旅游攻略 #Momenta",
+        description:"抖音公开视频",
+        durationLabel:"抖音",
+        stats:{view:218457,like:1188,favorite:0,reply:21,share:16}
+      },
+      "https://www.douyin.com/video/7524272704455920932": {
+        kind:"embed",
+        provider:"抖音",
+        originalUrl:"https://www.douyin.com/video/7524272704455920932",
+        embedUrl:"https://open.douyin.com/player/video?vid=7524272704455920932&autoplay=1",
+        posterEmbedUrl:"https://open.douyin.com/player/video?vid=7524272704455920932&autoplay=0",
+        thumbnail:"",
+        title:"“Momenta智行中国”青岛篇来啦! “红瓦绿树相映衬，碧海蓝天对岛城。”漫步八大关，穿行老街巷，这次我们来到了海滨之城——青岛。 辅助驾驶中国行，丈量哪里你来定: 评论区告诉我，下一站想去哪儿！#Momenta飞轮大模型 #青岛 #青岛旅游攻略 #Momenta",
+        description:"抖音公开视频",
+        durationLabel:"抖音",
+        stats:{view:218457,like:1188,favorite:0,reply:21,share:16}
+      }
+    };
+
+    function staticMetaForUrl(url){
+      var normalized=normalizeUrl(url);
+      var hit=STATIC_VIDEO_META[normalized];
+      if(hit)return normalizeMeta(hit,normalized);
+      if(/7524272704455920932/.test(normalized))return normalizeMeta(STATIC_VIDEO_META["https://www.douyin.com/video/7524272704455920932"],normalized);
+      return null;
+    }
+
     function storageKey(url){return"gx-video-meta:"+cacheVersion+":"+normalizeUrl(url)}
 
     function readPermanentCache(url){
@@ -502,6 +537,13 @@
       var u;try{u=new URL(value)}catch(e){throw new Error("链接格式不正确。")}
       var key=u.toString();
       if(metaCache[key])return metaCache[key];
+
+      var builtIn=staticMetaForUrl(value);
+      if(builtIn){
+        metaCache[key]=builtIn;
+        writePermanentCache(value,builtIn);
+        return builtIn;
+      }
 
       var result,b=parseBilibiliId(value),y=parseYouTubeId(value),v=parseVimeoId(value);
       if(b)result=await resolveBilibili(value,b);
@@ -615,8 +657,12 @@
         if(p.type==="collection"||Array.isArray(p.works)){insertCollection(p);continue}
         var meta=null,url=String(p.video||"").trim();
         try{
-          if(p.meta)meta=normalizeMeta(p.meta,url);
-          else if(url)meta=await resolveVideoLink(url);
+          if(p.meta){
+            meta=normalizeMeta(p.meta,url);
+            if(url)writePermanentCache(url,meta);
+          }else if(url){
+            meta=staticMetaForUrl(url)||await resolveVideoLink(url);
+          }
         }catch(e){console.warn("无法读取外部视频信息：",url,e)}
         if(meta)insertLinkedCard(meta,title,p.category||"motion",p.year||"",p.description||"",p.cover||"",p.label||"");
         else{var base=createCardBase(title,p.category||"motion",p.year||"",p.description||"",p.label||"");addCover(base.media,p.cover||"",title);workGrid.appendChild(base.card)}
