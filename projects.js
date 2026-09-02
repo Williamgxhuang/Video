@@ -3,15 +3,22 @@
 
    普通作品：type 可省略，填写 cover + video。
    作品合集：设置 type: "collection"，并在 works: [ ] 里添加子作品。
-   合集首页会自动使用 works 中前 6 个子作品的封面组成“书册堆叠”，不需要单独制作合集大封面。
 
-   cover：普通作品封面路径，例如 assets/covers/文件名.webp；合集请填写每个 work.cover
-   video：可填写 B站完整 BV/AV 链接，或 GitHub Release MP4 链接
-   category：motion / sound / content / experimental
+   支持：
+   - B站：自动读取标题、封面、播放/点赞/收藏等
+   - 抖音：通过 Cloudflare Worker 读取；成功后浏览器永久缓存
+   - GitHub Release / MP4 / WAV 等直链
+   - YouTube / Vimeo
 
-   B站链接：cover 留空时，页面会尝试自动读取视频封面。
-   没有封面或视频时，填空字符串 ""。
+   如果某条抖音作品的数据已经确定，可以像 Momenta 一样填写 meta 快照。
+   有 meta 时页面完全不会请求 Worker，最适合历史作品。
    ============================================================ */
+
+/* 你的 Cloudflare Worker */
+window.NFRAME_META_ENDPOINT = "https://douyin.hultbergdeister814.workers.dev/";
+
+/* 本地缓存版本。以后真想强制全部重新读取，把 v1 改成 v2 即可。 */
+window.NFRAME_META_CACHE_VERSION = "v1";
 
 window.PORTFOLIO_PROJECTS = [
   {
@@ -22,7 +29,31 @@ window.PORTFOLIO_PROJECTS = [
     label: "品牌影像",
     description: "Momenta · 10+ 支品牌视频与发布会内容；单项目全网 1200w+ 曝光。",
     cover: "",
-    video: "https://v.douyin.com/tLzdEHUO304/"
+    video: "https://v.douyin.com/tLzdEHUO304/",
+
+    /*
+       这条是已经查到的旧数据快照。
+       页面优先使用这里的数据，因此不会再请求查有校 / Worker。
+    */
+    meta: {
+      kind: "embed",
+      provider: "抖音",
+      originalUrl: "https://www.douyin.com/video/7524272704455920932",
+      embedUrl: "https://open.douyin.com/player/video?vid=7524272704455920932&autoplay=1",
+      posterEmbedUrl: "https://open.douyin.com/player/video?vid=7524272704455920932&autoplay=0",
+      thumbnail: "",
+      title: "“Momenta智行中国”青岛篇来啦! “红瓦绿树相映衬，碧海蓝天对岛城。”漫步八大关，穿行老街巷，这次我们来到了海滨之城——青岛。 辅助驾驶中国行，丈量哪里你来定: 评论区告诉我，下一站想去哪儿！#Momenta飞轮大模型 #青岛 #青岛旅游攻略 #Momenta",
+      description: "抖音公开视频",
+      durationLabel: "抖音",
+      stats: {
+        view: 218457,
+        like: 1188,
+        favorite: 0,
+        reply: 21,
+        share: 16
+      },
+      douyinVideoId: "7524272704455920932"
+    }
   },
   {
     title: "偷作业的贼",
@@ -55,13 +86,6 @@ window.PORTFOLIO_PROJECTS = [
     description: "北京大学燕语配音社丨技术部部长：涵盖广播剧后期制作、视频剪辑；\n优思铭想工作室：广播剧后期制作，对白编辑、混音、音效与配乐",
     collectionDescription: "这里集中展示在燕语配音社（某亦声工作室）/优思铭想工作室期间参与制作的广播剧与声音作品。点击列表中的作品即可在当前页面播放。",
 
-    /*
-       在下面 works 数组里继续复制项目即可。
-       B站：video 填完整 https://www.bilibili.com/video/BV.../ 链接。
-       GitHub Release：video 填 .mp4 的 Release Asset 地址。
-       如果 work.cover 留空，B站视频会尝试自动读取封面。
-       首页最多预览前 6 个子作品封面，更多作品由 countLabel 显示总量。
-    */
     works: [
       {
         title: "【互动游戏】我在北大竟然活不过一天？！| 恋爱生存互动游戏｜沙雕预警｜北京大学燕语配音社出品",
