@@ -7,145 +7,213 @@
   <meta name="description" content="GX/HUANG 影像、声音与内容作品集。">
   <title>GX/HUANG — 作品集</title>
   <style>
-    /* 普通作品卡片里的描述 */
-    .work-info p {
-      white-space: pre-line;
-    }
-
-    /* 合集详情页顶部的大段描述 */
-    .collection-description {
-      white-space: pre-line;
-    }
-
-    /* 合集内子作品列表的描述（如需换行也加上） */
-    .collection-item-main p {
-      white-space: pre-line;
-    }
-
-    /* 合集播放器下方的描述（如需换行也加上） */
-    .collection-player-copy p {
-      white-space: pre-line;
-    }
-    :root {
-      --bg:#f1eee7; --surface:#f8f6f1; --text:#1c211d; --muted:#666c65;
-      --line:rgba(28,33,29,.13); --accent:#315746; --accent-soft:rgba(49,87,70,.085);
-      --warm:#8b6b56; --warm-soft:rgba(139,107,86,.13); --danger:#a64545;
+    :root{
+      --bg:#f1eee7;
+      --surface:#f8f6f1;
+      --text:#1c211d;
+      --muted:#666c65;
+      --line:rgba(28,33,29,.13);
+      --accent:#315746;
+      --accent-soft:rgba(49,87,70,.085);
+      --warm:#8b6b56;
+      --danger:#a64545;
       --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:78px}
-    body{margin:0;min-width:320px;color:var(--text);background:var(--bg);font:16.5px/1.72 var(--sans);letter-spacing:.002em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-    body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(circle at 86% 4%,rgba(139,107,86,.07),transparent 29rem),radial-gradient(circle at 8% 34%,rgba(49,87,70,.045),transparent 34rem)}
-    body::after{content:"";position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.022;background-image:radial-gradient(rgba(28,32,29,.72) .42px,transparent .5px);background-size:4px 4px;mix-blend-mode:multiply}
+    body{margin:0;min-width:320px;color:var(--text);background:var(--bg);font:16.5px/1.72 var(--sans);letter-spacing:.002em;-webkit-font-smoothing:antialiased}
     body.modal-open{overflow:hidden}
-    a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit} button{color:inherit} img,video,iframe{max-width:100%}[hidden]{display:none!important}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{color:inherit}
+    img,video,iframe{max-width:100%}
+    [hidden]{display:none!important}
     ::selection{background:var(--text);color:#fff}
     .shell{width:min(1280px,calc(100% - 72px));margin:0 auto}
 
-    /* header */
     .site-header{position:sticky;top:0;z-index:30;border-bottom:1px solid rgba(28,32,29,.09);background:rgba(241,238,231,.84);backdrop-filter:blur(28px) saturate(125%)}
     .header-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px}
-    .brand{display:inline-flex;align-items:center;gap:13px;font-weight:760;letter-spacing:-.012em}
+    .brand{display:inline-flex;align-items:center;gap:13px;font-weight:760}
     .brand-mark{width:33px;height:33px;display:grid;place-items:center;border-radius:50%;background:#244a39;color:#fff;font-size:12.5px;font-weight:800}
-    .brand-copy{display:grid;font-size:15.5px;line-height:1.08}.brand-copy small{margin-top:4px;color:#858981;font-size:12.5px;font-weight:520;letter-spacing:.035em}
-    .nav{display:flex;align-items:center;gap:34px;color:#737870;font-size:14.5px}.nav a{position:relative;padding:26px 0 23px;font-weight:600}.nav a:hover,.nav a.active{color:var(--text)}
-    .nav a.active::after{content:"";position:absolute;right:24%;bottom:-1px;left:24%;height:2px;background:var(--accent)}
+    .brand-copy{display:grid;font-size:15.5px;line-height:1.08}
+    .brand-copy small{margin-top:4px;color:#858981;font-size:12.5px;font-weight:520;letter-spacing:.035em}
+    .nav{display:flex;align-items:center;gap:34px;color:#737870;font-size:14.5px}
+    .nav a{padding:26px 0 23px;font-weight:600}
+    .nav a:hover{color:var(--text)}
     .header-action,.button{display:inline-flex;min-height:42px;align-items:center;justify-content:center;gap:8px;padding:0 17px;border:1px solid var(--line);border-radius:999px;background:rgba(248,246,241,.68);cursor:pointer;font-size:14px;font-weight:650;transition:.22s ease}
     .header-action:hover,.button.secondary:hover{border-color:rgba(49,87,70,.3);background:var(--accent-soft);color:var(--accent)}
-    .button.primary{min-height:48px;padding:0 21px;border-color:var(--accent);background:var(--accent);color:#fff;font-size:14.5px;font-weight:700}.button.primary::after{content:"↘"}.button.primary:hover{background:#244a39;border-color:#244a39;transform:translateY(-1px)}
-    .button:disabled{opacity:.5;cursor:wait;transform:none}
+    .button.primary{min-height:48px;padding:0 21px;border-color:var(--accent);background:var(--accent);color:#fff;font-weight:700}
+    .button:disabled{opacity:.5;cursor:wait}
 
-    /* hero */
-    .hero{position:relative;min-height:min(760px,calc(100svh - 72px));display:flex;align-items:center;overflow:hidden;padding:clamp(96px,11vw,154px) 0 clamp(86px,9vw,124px)}
-    .hero::before{content:"";position:absolute;width:min(48vw,680px);aspect-ratio:1.18/1;right:-11vw;top:9%;border:1px solid rgba(139,107,86,.12);border-radius:50%;background:radial-gradient(circle at 38% 38%,rgba(255,255,255,.28),transparent 29%),radial-gradient(circle at 62% 62%,rgba(49,87,70,.055),transparent 56%);box-shadow:0 0 0 34px rgba(255,255,255,.042),0 0 0 35px rgba(49,87,70,.035);pointer-events:none}
-    .hero::after{content:"GX / HUANG";position:absolute;right:2vw;bottom:5%;z-index:-1;color:rgba(28,32,29,.022);font-size:clamp(92px,14vw,208px);font-weight:820;letter-spacing:-.065em;line-height:1;white-space:nowrap}
+    .hero{min-height:min(760px,calc(100svh - 72px));display:flex;align-items:center;padding:clamp(96px,11vw,154px) 0 clamp(86px,9vw,124px)}
     .hero-grid{width:100%;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(310px,.5fr);gap:clamp(62px,10vw,148px);align-items:end}
-    .eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 31px;color:#80634f;font-size:13.5px;font-weight:680;letter-spacing:.12em}.eyebrow::before{content:"";width:42px;height:1px;background:currentColor}
-    .hero h1{max-width:960px;margin:0;font-size:clamp(58px,7.8vw,116px);font-weight:760;letter-spacing:-.062em;line-height:.95;text-wrap:balance}.hero h1 span{position:relative;display:inline-block;color:var(--accent);font-weight:770}.hero h1 span::after{content:"";position:absolute;right:7%;bottom:-.055em;left:1.5%;height:2px;background:linear-gradient(90deg,rgba(139,107,86,.56),rgba(49,87,70,.28) 58%,transparent)}
-    .hero-side{padding:4px 0 3px 28px;border-left:1px solid rgba(28,32,29,.16)}.hero-side::before{content:"SELECTED WORKS / 2019—2026";display:block;margin-bottom:22px;color:#9a7c67;font:650 12.5px/1.2 ui-monospace,"SFMono-Regular",Consolas,monospace;letter-spacing:.075em}
-    .hero-side p{max-width:400px;margin:0;color:#626761;font-size:16px;line-height:1.9}.hero-actions{display:flex;gap:10px;margin-top:38px}.hero-tags{margin-top:22px!important;color:#747970!important;font-size:14.5px!important;line-height:1.65!important;letter-spacing:.02em}
+    .eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 31px;color:#80634f;font-size:13.5px;font-weight:680;letter-spacing:.12em}
+    .eyebrow::before{content:"";width:42px;height:1px;background:currentColor}
+    .hero h1{max-width:960px;margin:0;font-size:clamp(58px,7.8vw,116px);font-weight:760;letter-spacing:-.062em;line-height:.95}
+    .hero h1 span{color:var(--accent)}
+    .hero-side{padding-left:28px;border-left:1px solid rgba(28,32,29,.16)}
+    .hero-side::before{content:"SELECTED WORKS / 2019—2026";display:block;margin-bottom:22px;color:#9a7c67;font:650 12.5px/1.2 ui-monospace,Consolas,monospace;letter-spacing:.075em}
+    .hero-side p{max-width:400px;margin:0;color:#626761;font-size:16px;line-height:1.9}
+    .hero-actions{display:flex;gap:10px;margin-top:38px}
+    .hero-tags{margin-top:22px!important;color:#747970!important;font-size:14.5px!important}
 
-    /* works */
     .section{padding:clamp(104px,9vw,142px) 0;border-top:1px solid var(--line)}
-    #works{position:relative;background:#eae6dc;box-shadow:0 0 0 100vmax #eae6dc;clip-path:inset(0 -100vmax)}
-    #works::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;background-image:linear-gradient(90deg,transparent calc(50% - .5px),rgba(28,32,29,.055) calc(50% - .5px),rgba(28,32,29,.055) calc(50% + .5px),transparent calc(50% + .5px))}
-    .section-head{position:relative;display:grid;grid-template-columns:1fr auto;align-items:start;gap:28px;margin-bottom:58px;padding-top:22px;border-top:1px solid rgba(28,32,29,.16)}
-    .section-head::before{content:"01 / SELECTED WORK";position:absolute;top:-30px;left:0;color:#9a7c67;font:650 12.5px/1.2 ui-monospace,"SFMono-Regular",Consolas,monospace;letter-spacing:.08em}.section-head::after{content:"";position:absolute;top:-1px;left:0;width:96px;height:2px;background:linear-gradient(90deg,rgba(139,107,86,.82),rgba(49,87,70,.46))}
-    .section h2{margin:0;font-size:clamp(46px,5.6vw,76px);font-weight:760;letter-spacing:-.05em;line-height:.98}.section-intro{max-width:470px;margin:0;padding-top:8px;color:#676c65;font-size:15.5px;line-height:1.85;text-align:left}
-    .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:70px 34px;align-items:stretch;counter-reset:work}
-    .work-card{position:relative;display:flex;min-width:0;height:100%;flex-direction:column;counter-increment:work;isolation:isolate}.work-card::after{content:"0" counter(work);position:absolute;top:15px;right:15px;z-index:8;padding:7px 10px 6px;border:1px solid rgba(255,255,255,.32);border-radius:999px;background:rgba(18,22,19,.36);color:rgba(255,255,255,.92);font:700 11.5px/1 ui-monospace,"SFMono-Regular",Consolas,monospace;letter-spacing:.07em;backdrop-filter:blur(10px)}
-    .work-media{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(28,32,29,.13);border-radius:7px;background:#dcd7cc;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 34px rgba(40,43,38,.055);transition:transform .45s cubic-bezier(.2,.72,.2,1),box-shadow .45s ease,border-color .35s ease}
-    .work-media::before{content:"";position:absolute;inset:6px;z-index:3;pointer-events:none;border:1px solid rgba(255,255,255,.24);border-radius:3px;box-shadow:0 0 0 1px rgba(20,24,21,.025) inset}.work-media::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to top,rgba(16,20,17,.34),transparent 42%);opacity:.52}
-    .work-media>img,.work-media>video,.work-media>iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;transition:transform .55s cubic-bezier(.2,.72,.2,1)}.work-card:hover .work-media{transform:translateY(-7px);border-color:rgba(49,87,70,.24);box-shadow:0 1px 0 rgba(255,255,255,.62) inset,0 34px 74px rgba(35,39,34,.15),0 9px 20px rgba(35,39,34,.07)}.work-card:hover .work-media>img,.work-card:hover .work-media>video{transform:scale(1.028)}
-    .media-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:27px;background:radial-gradient(circle at 20% 16%,rgba(255,255,255,.55),transparent 32%),linear-gradient(135deg,rgba(49,87,70,.07),transparent 48%),#ddd8cd;color:#858981}.media-placeholder b{position:relative;z-index:1;max-width:80%;color:#4f554f;font-size:clamp(27px,3.1vw,42px);font-weight:720;letter-spacing:-.03em;line-height:1.08}.media-placeholder span{font-size:13px}.media-placeholder::after{content:"GX";position:absolute;right:20px;bottom:-28px;color:rgba(28,32,29,.04);font-size:clamp(92px,13vw,170px);font-weight:850;letter-spacing:-.06em;line-height:1}
-    .media-chip{position:absolute;top:15px;left:15px;z-index:7;padding:7px 11px;border:1px solid rgba(255,255,255,.36);border-radius:999px;background:rgba(246,243,236,.8);color:#343a35;font-size:13px;font-weight:650;letter-spacing:.025em;backdrop-filter:blur(10px)}
-    .media-play{position:absolute;right:15px;bottom:15px;z-index:7;min-height:44px;padding:0 15px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(20,24,21,.76);color:#fff;cursor:pointer;font-size:13.5px;font-weight:650;backdrop-filter:blur(10px);transition:.25s ease}.media-play::before{content:"▶";margin-right:7px;font-size:8px}.media-play:hover{background:rgba(49,87,70,.95);transform:translateY(-1px)}.media-play:disabled{cursor:default;opacity:.72}
-    .work-info{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:26px;min-height:148px;padding:22px 2px 0}.work-info::before{content:"";position:absolute;top:0;left:2px;width:38px;height:1px;background:rgba(28,32,29,.28)}.work-info h3{max-width:92%;margin:0 0 10px;font-size:clamp(22px,1.8vw,27px);font-weight:710;letter-spacing:-.03em;line-height:1.28}.work-info p{max-width:590px;margin:0;color:#666b65;font-size:15px;line-height:1.8}.work-year{padding-top:3px;color:#896b57;font:650 13px/1.4 ui-monospace,"SFMono-Regular",Consolas,monospace;letter-spacing:.055em;white-space:nowrap}.external-link{display:inline-flex;margin-top:13px;color:var(--accent);font-size:13.5px;font-weight:650;text-decoration:underline;text-underline-offset:4px}
-    .collection-tag{display:inline-flex;align-items:center;gap:7px;margin-top:15px;color:var(--accent);font-size:13.5px;font-weight:650}.collection-tag::before{content:"↳";color:#96765f}
+    #works{background:#eae6dc}
+    .section-head{display:grid;grid-template-columns:1fr auto;align-items:start;gap:28px;margin-bottom:58px;padding-top:22px;border-top:1px solid rgba(28,32,29,.16)}
+    .section h2{margin:0;font-size:clamp(46px,5.6vw,76px);font-weight:760;letter-spacing:-.05em;line-height:.98}
+    .section-intro{max-width:500px;margin:0;padding-top:8px;color:#676c65;font-size:15.5px;line-height:1.85}
 
-    /* platform stats */
-    .video-stats{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:15px;color:#59605a;font-size:13.5px;line-height:1.45}.video-stats::before{content:attr(data-source);display:inline-flex;align-items:center;min-height:27px;padding:0 9px;border:1px solid rgba(49,87,70,.16);border-radius:999px;background:rgba(49,87,70,.075);color:var(--accent);font-size:12.5px;font-weight:720;letter-spacing:.02em}.video-stat{display:inline-flex;align-items:baseline;gap:5px;white-space:nowrap}.video-stat-label{color:#858a83;font-size:12.5px;font-weight:570}.video-stat-value{color:#303631;font-size:14px;font-weight:740;font-variant-numeric:tabular-nums}
-    .video-stats.is-player{margin-top:18px;gap:9px 18px}.video-stats.is-player .video-stat-label{font-size:13px}.video-stats.is-player .video-stat-value{font-size:15px}.collection-row-stats{margin-top:10px;gap:7px 12px}.collection-row-stats::before{min-height:25px;font-size:12px}.collection-row-stats .video-stat-label{font-size:12.5px}.collection-row-stats .video-stat-value{font-size:13.5px}
+    .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:70px 34px;align-items:start}
+    .work-card{position:relative;min-width:0}
+    .work-media{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(28,32,29,.13);border-radius:7px;background:#dcd7cc;box-shadow:0 14px 34px rgba(40,43,38,.055);transition:.35s ease}
+    .work-card:hover .work-media{transform:translateY(-6px);box-shadow:0 28px 58px rgba(35,39,34,.13)}
+    .work-media>img,.work-media>video,.work-media>iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+    .media-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:27px;background:linear-gradient(135deg,rgba(49,87,70,.08),transparent 48%),#ddd8cd;color:#858981}
+    .media-placeholder b{max-width:80%;color:#4f554f;font-size:clamp(27px,3.1vw,42px);font-weight:720;line-height:1.08}
+    .media-placeholder span{font-size:13px}
+    .media-chip{position:absolute;top:15px;left:15px;z-index:7;padding:7px 11px;border:1px solid rgba(255,255,255,.36);border-radius:999px;background:rgba(246,243,236,.82);font-size:13px;font-weight:650;backdrop-filter:blur(10px)}
+    .media-play{position:absolute;right:15px;bottom:15px;z-index:7;min-height:44px;padding:0 15px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(20,24,21,.76);color:#fff;cursor:pointer;font-size:13.5px;font-weight:650;backdrop-filter:blur(10px)}
+    .media-play::before{content:"▶";margin-right:7px;font-size:8px}
+    .work-info{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:26px;padding:22px 2px 0}
+    .work-info h3{max-width:92%;margin:0 0 10px;font-size:clamp(22px,1.8vw,27px);font-weight:710;letter-spacing:-.03em;line-height:1.28}
+    .work-info p{white-space:pre-line;max-width:590px;margin:0;color:#666b65;font-size:15px;line-height:1.8}
+    .work-year{padding-top:3px;color:#896b57;font:650 13px/1.4 ui-monospace,Consolas,monospace;white-space:nowrap}
+    .external-link{display:inline-flex;margin-top:13px;color:var(--accent);font-size:13.5px;font-weight:650;text-decoration:underline;text-underline-offset:4px}
 
-    /* collection cover */
-    .collection-card{cursor:pointer}.collection-card .work-media{overflow:hidden;background:radial-gradient(circle at 50% 42%,rgba(49,87,70,.09),transparent 48%),linear-gradient(145deg,#f3f0e7 0%,#e7e0d1 55%,#ddd4c4 100%)}.collection-stack{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;perspective:1100px}.collection-stack::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 13%,rgba(255,255,255,.72),transparent 30%),radial-gradient(circle at 82% 72%,rgba(139,107,86,.085),transparent 35%),linear-gradient(180deg,rgba(255,255,255,.035),rgba(0,0,0,.09))}
-    .collection-stack-shelf{position:absolute;left:7%;right:7%;bottom:11.5%;z-index:1;height:7px;border-radius:999px;background:rgba(65,68,61,.11);box-shadow:0 12px 24px rgba(41,43,37,.09);transition:.4s ease}.collection-stack-count,.collection-stack-note{position:absolute;z-index:8;display:inline-flex;align-items:center;border-radius:999px;backdrop-filter:blur(10px);font-size:13px;font-weight:680}.collection-stack-count{top:16px;right:16px;min-height:34px;gap:7px;padding:0 11px;border:1px solid rgba(28,32,29,.08);background:rgba(251,250,247,.9)}.collection-stack-count::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}.collection-stack-note{left:16px;bottom:16px;gap:8px;padding:8px 12px;background:rgba(31,33,30,.78);color:#fff}.collection-stack-note::before{content:"";width:6px;height:6px;border-radius:50%;background:#d7c0a9;box-shadow:0 0 0 4px rgba(215,192,169,.15)}
-    .stack-item{position:absolute;left:var(--stack-left);bottom:17.5%;z-index:var(--stack-z);width:var(--stack-width);height:61%;min-width:64px;overflow:hidden;border:1px solid rgba(28,32,29,.13);border-radius:6px 6px 4px 4px;background:#ebe7de;box-shadow:0 23px 45px rgba(38,42,37,.17),0 3px 7px rgba(38,42,37,.07);transform:rotate(var(--stack-rotate)) translateY(var(--stack-y));transform-origin:center bottom;transition:left .45s cubic-bezier(.2,.72,.2,1),transform .45s cubic-bezier(.2,.72,.2,1),box-shadow .35s ease,opacity .25s ease}.stack-item::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(255,255,255,.17),transparent 24%),linear-gradient(180deg,rgba(255,255,255,.035),rgba(0,0,0,.15));pointer-events:none}.stack-item img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s cubic-bezier(.2,.72,.2,1)}.stack-spine{position:absolute;left:0;top:0;bottom:0;z-index:3;width:8px;background:linear-gradient(180deg,rgba(37,40,36,.14),rgba(37,40,36,.02));border-right:1px solid rgba(255,255,255,.24)}.stack-label{position:absolute;left:9px;right:7px;bottom:9px;z-index:4;display:flex;flex-direction:column;gap:3px;color:rgba(255,255,255,.95);text-shadow:0 2px 12px rgba(0,0,0,.4)}.stack-label strong{display:-webkit-box;overflow:hidden;font-size:13px;font-weight:720;line-height:1.32;-webkit-box-orient:vertical;-webkit-line-clamp:2}.stack-label span{font-size:12px;opacity:.84}.stack-item.is-placeholder{display:flex;align-items:flex-end;background:linear-gradient(145deg,rgba(49,87,70,.10),transparent 58%),linear-gradient(315deg,rgba(139,107,86,.08),transparent 52%),#e2ddd2}.stack-item.is-placeholder .stack-label{color:#5e625b;text-shadow:none}
-    .collection-card:hover .stack-item{left:var(--stack-hover-left);transform:rotate(var(--stack-hover-rotate)) translateY(var(--stack-hover-y));box-shadow:0 30px 58px rgba(38,42,37,.20),0 5px 10px rgba(38,42,37,.08)}.collection-card:hover .stack-item img{transform:scale(1.025)}.collection-card:hover .collection-stack-shelf{transform:scaleX(1.025)}.collection-card.is-opening .stack-item{left:var(--stack-open-left);transform:rotate(var(--stack-open-rotate)) translateY(-24px) scale(1.015)}.collection-card.is-opening .collection-stack-count,.collection-card.is-opening .collection-stack-note,.collection-card.is-opening .media-chip,.collection-card.is-opening .media-play,.collection-card.is-opening::after{opacity:0}
+    .video-stats{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:15px;color:#59605a;font-size:13.5px}
+    .video-stats::before{content:attr(data-source);display:inline-flex;align-items:center;min-height:27px;padding:0 9px;border:1px solid rgba(49,87,70,.16);border-radius:999px;background:rgba(49,87,70,.075);color:var(--accent);font-size:12.5px;font-weight:720}
+    .video-stat{display:inline-flex;align-items:baseline;gap:5px;white-space:nowrap}
+    .video-stat-label{color:#858a83;font-size:12.5px}
+    .video-stat-value{color:#303631;font-size:14px;font-weight:740;font-variant-numeric:tabular-nums}
 
-    /* collection detail */
-    .collection-view{animation:collectionIn .32s ease both}.collection-toolbar{margin-bottom:42px}.collection-back{min-height:44px;padding:0;border:0;background:transparent;color:#686d66;cursor:pointer;font-size:14.5px;font-weight:650}.collection-back:hover{color:var(--accent);transform:translateX(-3px)}
-    .collection-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:62px;align-items:start;padding-bottom:48px;border-bottom:1px solid rgba(28,32,29,.15)}.collection-eyebrow{margin:0 0 14px;color:#8e6d58;font-size:13.5px;font-weight:700;letter-spacing:.1em}.collection-title{max-width:900px;margin:0;font-size:clamp(46px,6vw,82px);font-weight:760;letter-spacing:-.052em;line-height:.98}.collection-description{max-width:780px;margin:22px 0 0;color:#676c65;font-size:17px;line-height:1.85}.collection-count{display:inline-flex;min-height:42px;align-items:center;padding:0 15px;border:1px solid rgba(49,87,70,.16);border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:13.5px;font-weight:680;white-space:nowrap}
-    .collection-player{margin:48px 0 0}.collection-player-media{width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(28,32,29,.16);border-radius:7px;background:#111412;box-shadow:0 32px 72px rgba(30,34,30,.15),0 7px 16px rgba(30,34,30,.06)}.collection-player-media iframe,.collection-player-media video{display:block;width:100%;height:100%;border:0;object-fit:contain;background:#000}.collection-player-fallback{display:grid;height:100%;place-items:center;padding:30px}.collection-player-fallback a{color:#fff;text-decoration:underline}
-    .collection-player-copy{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:28px;padding:28px 2px 0}.collection-player-copy small{color:#969b94;font-size:13px;font-weight:650;letter-spacing:.08em}.collection-player-copy h3{margin:8px 0 8px;font-size:clamp(27px,2.8vw,36px);font-weight:720;letter-spacing:-.035em;line-height:1.25}.collection-player-copy p{max-width:700px;margin:0;color:#747972;font-size:15.5px;line-height:1.8}.collection-player-link{align-self:end;color:var(--accent);font-size:14.5px;font-weight:620;text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
-    .collection-list{margin-top:64px;border-top:1px solid rgba(28,32,29,.14)}.collection-item{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(92px,auto) minmax(116px,auto);gap:24px;align-items:center;min-height:116px;padding:27px 4px;border-bottom:1px solid rgba(28,32,29,.12);transition:.22s ease}.collection-item:hover{margin:0 -14px;padding-right:18px;padding-left:18px;background:rgba(255,255,255,.25)}.collection-item.is-active{margin:0 -14px;padding-right:18px;padding-left:18px;background:rgba(49,87,70,.075);box-shadow:inset 3px 0 0 rgba(49,87,70,.56)}.collection-index{color:#9ca099;font:700 13px/1 ui-monospace,"SFMono-Regular",Consolas,monospace}.collection-item-main{min-width:0}.collection-item-main h3{margin:0 0 9px;font-size:20.5px;font-weight:700;letter-spacing:-.02em;line-height:1.35}.collection-item-main p{margin:0;color:#777c75;font-size:15px;line-height:1.65}.collection-item-year{color:#8d705c;font:650 13.5px/1.4 ui-monospace,"SFMono-Regular",Consolas,monospace;white-space:nowrap}.collection-play{min-height:44px;padding:0 16px;border:1px solid rgba(28,32,29,.14);border-radius:999px;background:transparent;cursor:pointer;font-size:14.5px;font-weight:660;white-space:nowrap}.collection-play:hover:not(:disabled){border-color:var(--accent);background:var(--accent);color:#fff}.collection-play:disabled{opacity:.45;cursor:default}.collection-empty{padding:38px 2px;color:#7d827a;font-size:15.5px;line-height:1.8}
+    .collection-card{cursor:pointer}
+    .collection-tag{display:inline-flex;margin-top:15px;color:var(--accent);font-size:13.5px;font-weight:650}
+    .collection-stack{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;gap:10px;padding:50px 36px 48px;background:linear-gradient(145deg,#f3f0e7,#ddd4c4)}
+    .stack-item{position:relative;width:min(28%,180px);height:72%;overflow:hidden;border-radius:6px;background:#d8d2c6;box-shadow:0 15px 35px rgba(38,42,37,.17);transform:rotate(var(--r,0deg)) translateY(var(--y,0))}
+    .stack-item img{width:100%;height:100%;object-fit:cover}
+    .stack-label{position:absolute;right:8px;bottom:8px;left:8px;color:#fff;text-shadow:0 2px 10px #000;font-size:12px;font-weight:700}
+    .stack-item.is-placeholder .stack-label{color:#555;text-shadow:none}
+
+    .collection-view{animation:collectionIn .25s ease both}
+    .collection-toolbar{margin-bottom:42px}
+    .collection-back{min-height:44px;padding:0;border:0;background:transparent;color:#686d66;cursor:pointer;font-size:14.5px;font-weight:650}
+    .collection-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:62px;align-items:start;padding-bottom:48px;border-bottom:1px solid rgba(28,32,29,.15)}
+    .collection-eyebrow{margin:0 0 14px;color:#8e6d58;font-size:13.5px;font-weight:700;letter-spacing:.1em}
+    .collection-title{max-width:900px;margin:0;font-size:clamp(46px,6vw,82px);font-weight:760;letter-spacing:-.052em;line-height:.98}
+    .collection-description{white-space:pre-line;max-width:780px;margin:22px 0 0;color:#676c65;font-size:17px;line-height:1.85}
+    .collection-count{display:inline-flex;min-height:42px;align-items:center;padding:0 15px;border:1px solid rgba(49,87,70,.16);border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:13.5px;font-weight:680;white-space:nowrap}
+    .collection-player{margin-top:48px}
+    .collection-player-media{width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:7px;background:#111}
+    .collection-player-media iframe,.collection-player-media video{display:block;width:100%;height:100%;border:0;object-fit:contain;background:#000}
+    .collection-player-copy{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;padding:28px 2px 0}
+    .collection-player-copy h3{margin:8px 0;font-size:clamp(27px,2.8vw,36px)}
+    .collection-player-copy p{white-space:pre-line;max-width:700px;margin:0;color:#747972}
+    .collection-player-link{align-self:end;color:var(--accent);text-decoration:underline}
+    .collection-list{margin-top:64px;border-top:1px solid rgba(28,32,29,.14)}
+    .collection-item{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(92px,auto) minmax(116px,auto);gap:24px;align-items:center;min-height:116px;padding:27px 4px;border-bottom:1px solid rgba(28,32,29,.12)}
+    .collection-item-main h3{margin:0 0 9px;font-size:20.5px}
+    .collection-item-main p{white-space:pre-line;margin:0;color:#777c75;font-size:15px}
+    .collection-item-year{color:#8d705c;font:650 13.5px/1.4 ui-monospace,Consolas,monospace}
+    .collection-play{min-height:44px;padding:0 16px;border:1px solid rgba(28,32,29,.14);border-radius:999px;background:transparent;cursor:pointer;font-weight:660}
+    .collection-row-stats{margin-top:10px}
+    .collection-player-fallback{display:grid;height:100%;place-items:center;padding:30px;color:#fff}
     @keyframes collectionIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-    /* footer */
-    footer{min-height:120px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-top:1px solid var(--line);color:#767b74;font-size:13.5px}footer::before{content:"END / 2026";margin-right:auto;color:#a3836d;font:650 12px/1 ui-monospace,"SFMono-Regular",Consolas,monospace;letter-spacing:.08em}footer>span{margin-left:24px}footer a{color:var(--text)}footer a:hover{color:var(--accent)}
+    footer{min-height:120px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-top:1px solid var(--line);color:#767b74;font-size:13.5px}
 
-    /* modal */
-    .modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s ease}.modal.open{opacity:1;pointer-events:auto}.modal-backdrop{position:absolute;inset:0;background:rgba(18,22,19,.58);backdrop-filter:blur(10px)}.modal-panel{position:relative;width:min(760px,100%);max-height:calc(100vh - 40px);overflow:auto;border:1px solid rgba(28,32,29,.14);border-radius:16px;background:#f5f2eb;box-shadow:0 36px 90px rgba(25,29,26,.22)}
-    .modal-head{position:sticky;top:0;z-index:4;display:flex;align-items:flex-start;justify-content:space-between;gap:22px;padding:26px;border-bottom:1px solid var(--line);background:rgba(245,242,235,.95);backdrop-filter:blur(14px)}.modal-head h3{margin:0;font-size:25px}.modal-head p{margin:7px 0 0;color:var(--muted);font-size:13.5px}.modal-close{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer;font-size:20px}.upload-form{display:grid;gap:19px;padding:25px 26px 29px}
-    .source-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:13px;background:#e9e5dc}.source-tab{min-height:44px;border:0;border-radius:10px;background:transparent;color:var(--muted);cursor:pointer;font-weight:650}.source-tab.active{background:var(--surface);color:var(--accent);box-shadow:0 2px 10px rgba(0,0,0,.05)}
-    .field{display:grid;gap:8px}.field-row{display:grid;grid-template-columns:1fr 160px;gap:12px}.field label,.field-label{color:#555a53;font-size:13.5px;font-weight:700}.field input,.field select,.field textarea{width:100%;min-height:48px;padding:0 13px;border:1px solid var(--line);border-radius:10px;outline:0;background:#fff;color:var(--text);font-size:14.5px}.field textarea{min-height:90px;padding-top:12px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(49,87,70,.09)}
-    .dropzone,.cover-zone{position:relative;display:grid;place-items:center;min-height:132px;padding:20px;border:1px dashed #b9b7af;border-radius:12px;background:#f7f5f0;cursor:pointer;text-align:center}.dropzone:hover,.dropzone.dragging,.cover-zone:hover{border-color:var(--accent);background:var(--accent-soft)}.dropzone input,.cover-zone input{position:absolute;width:1px;height:1px;opacity:0}.dropzone strong,.cover-zone strong{display:block;margin-bottom:5px;font-size:14.5px}.dropzone span,.cover-zone span,.cover-help,.link-status,.form-hint,.progress-head{color:var(--muted);font-size:12.5px}
-    .preview-box,.cover-preview,.link-preview{display:none;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#e9e7e1}.preview-box.show,.cover-preview.show,.link-preview.show{display:block}.preview-box video{display:block;width:100%;max-height:260px;background:#111}.cover-preview{position:relative;aspect-ratio:16/9}.cover-preview img{width:100%;height:100%;object-fit:cover}.cover-preview button{position:absolute;top:10px;right:10px;min-height:36px;padding:0 12px;border:0;border-radius:999px;background:rgba(31,33,30,.86);color:#fff;cursor:pointer}
-    .link-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}.link-status{margin:0}.link-status.ok{color:var(--accent)}.link-status.error{color:var(--danger)}.link-preview{position:relative;aspect-ratio:16/9}.link-preview img,.link-preview video,.link-preview iframe{width:100%;height:100%;object-fit:cover;border:0}.link-preview-caption{position:absolute;right:12px;bottom:12px;left:12px;display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:12px;background:rgba(31,33,30,.84);color:#fff;backdrop-filter:blur(8px)}.link-preview-caption strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13.5px}.link-preview-caption span{flex:0 0 auto;color:rgba(255,255,255,.72);font-size:12px}.link-preview-stats{position:absolute;top:12px;left:12px;z-index:3;margin:0;padding:8px 10px;border-radius:12px;background:rgba(22,25,23,.8);backdrop-filter:blur(10px)}.link-preview-stats::before{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.16);color:#fff}.link-preview-stats .video-stat-label{color:rgba(255,255,255,.62)}.link-preview-stats .video-stat-value{color:#fff}
-    .cover-block{display:grid;gap:9px}.upload-progress{display:none;padding:13px;border-radius:12px;background:var(--accent-soft)}.upload-progress.show{display:block}.progress-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--accent)}.progress-track{height:4px;overflow:hidden;border-radius:999px;background:rgba(49,87,70,.14)}.progress-track i{display:block;width:0;height:100%;background:var(--accent)}.form-foot{display:flex;align-items:center;justify-content:space-between;gap:18px}.form-hint{max-width:440px;margin:0}.toast{position:fixed;right:22px;bottom:22px;z-index:100;max-width:min(400px,calc(100% - 44px));padding:13px 17px;border-radius:10px;background:var(--text);color:#fff;box-shadow:0 24px 60px rgba(0,0,0,.18);font-size:13.5px;opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s ease}.toast.show{opacity:1;transform:none}
+    .modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.2s ease}
+    .modal.open{opacity:1;pointer-events:auto}
+    .modal-backdrop{position:absolute;inset:0;background:rgba(18,22,19,.58);backdrop-filter:blur(10px)}
+    .modal-panel{position:relative;width:min(760px,100%);max-height:calc(100vh - 40px);overflow:auto;border-radius:16px;background:#f5f2eb;box-shadow:0 36px 90px rgba(25,29,26,.22)}
+    .modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px;padding:26px;border-bottom:1px solid var(--line)}
+    .modal-head h3{margin:0;font-size:25px}
+    .modal-head p{margin:7px 0 0;color:var(--muted);font-size:13.5px}
+    .modal-close{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer;font-size:20px}
+    .upload-form{display:grid;gap:19px;padding:25px 26px 29px}
+    .source-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:13px;background:#e9e5dc}
+    .source-tab{min-height:44px;border:0;border-radius:10px;background:transparent;color:var(--muted);cursor:pointer;font-weight:650}
+    .source-tab.active{background:var(--surface);color:var(--accent)}
+    .field{display:grid;gap:8px}
+    .field-row{display:grid;grid-template-columns:1fr 160px;gap:12px}
+    .field label,.field-label{color:#555a53;font-size:13.5px;font-weight:700}
+    .field input,.field select,.field textarea{width:100%;min-height:48px;padding:0 13px;border:1px solid var(--line);border-radius:10px;outline:0;background:#fff;color:var(--text)}
+    .field textarea{min-height:90px;padding-top:12px;resize:vertical}
+    .dropzone,.cover-zone{position:relative;display:grid;place-items:center;min-height:120px;padding:20px;border:1px dashed #b9b7af;border-radius:12px;background:#f7f5f0;cursor:pointer;text-align:center}
+    .dropzone input,.cover-zone input{position:absolute;width:1px;height:1px;opacity:0}
+    .source-panel{display:grid;gap:10px}
+    .link-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+    .link-status,.form-hint,.cover-help{margin:0;color:var(--muted);font-size:12.5px}
+    .link-status.ok{color:var(--accent)}
+    .link-status.error{color:var(--danger)}
+    .preview-box,.cover-preview,.link-preview{display:none;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#e9e7e1}
+    .preview-box.show,.cover-preview.show,.link-preview.show{display:block}
+    .preview-box video{display:block;width:100%;max-height:260px;background:#111}
+    .cover-preview{position:relative;aspect-ratio:16/9}
+    .cover-preview img{width:100%;height:100%;object-fit:cover}
+    .cover-preview button{position:absolute;top:10px;right:10px;border:0;border-radius:999px;padding:8px 12px;background:#222;color:#fff}
+    .link-preview{position:relative;aspect-ratio:16/9}
+    .link-preview img,.link-preview video,.link-preview iframe{width:100%;height:100%;object-fit:cover;border:0}
+    .link-preview-caption{position:absolute;right:12px;bottom:12px;left:12px;display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:12px;background:rgba(31,33,30,.84);color:#fff}
+    .link-preview-stats{position:absolute;top:12px;left:12px;z-index:3;margin:0;padding:8px 10px;border-radius:12px;background:rgba(22,25,23,.82)}
+    .link-preview-stats::before,.link-preview-stats .video-stat-label,.link-preview-stats .video-stat-value{color:#fff}
+    .form-foot{display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .toast{position:fixed;right:22px;bottom:22px;z-index:100;max-width:400px;padding:13px 17px;border-radius:10px;background:var(--text);color:#fff;opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s ease}
+    .toast.show{opacity:1;transform:none}
 
-    @media (hover:none){.collection-card .stack-item{left:var(--stack-hover-left);transform:rotate(var(--stack-hover-rotate)) translateY(var(--stack-hover-y))}}
-    @media (max-width:1020px){.shell{width:min(100% - 48px,900px)}.hero{min-height:auto}.hero-grid{gap:58px}.work-grid{gap:56px 24px}}
-    @media (max-width:880px){.nav{display:none}.hero{padding-top:92px}.hero-grid{grid-template-columns:1fr;gap:48px}.hero-side{max-width:620px;padding-left:0;border-left:0}.section-head{grid-template-columns:1fr;gap:20px}.section-intro{max-width:560px;padding-top:0}#works::before{display:none}.work-grid{grid-template-columns:1fr;gap:48px}.collection-hero{grid-template-columns:1fr;gap:28px}.collection-player-copy{grid-template-columns:1fr}.collection-player-link{justify-self:start}.collection-item{grid-template-columns:50px minmax(0,1fr) auto}.collection-item-year{display:none}}
-    @media (max-width:620px){body{font-size:16px}.shell{width:calc(100% - 30px)}.header-inner{min-height:64px}.brand-mark{width:30px;height:30px}.brand-copy small{display:none}.header-action{min-height:39px;padding:0 13px;font-size:13px}.hero{padding:78px 0}.hero::before{width:76vw;right:-36vw;top:14%;opacity:.48}.hero::after{bottom:3%;font-size:28vw}.hero h1{font-size:clamp(48px,15.3vw,72px);line-height:.96}.hero-side::before{font-size:12px}.hero-side p{font-size:15.5px}.section{padding:94px 0}.section-head{margin-bottom:42px;padding-top:18px}.section-head::before{top:-27px;font-size:12px}.section h2{font-size:clamp(42px,12.6vw,58px)}.section-intro{font-size:15px}.work-grid{gap:46px}.work-media{border-radius:5px}.work-info{min-height:0;grid-template-columns:1fr;padding:20px 1px 0}.work-info h3{max-width:100%;font-size:22px}.work-info p{font-size:14.5px}.work-year{font-size:12.5px}.video-stats{gap:8px 12px}.video-stats::before{font-size:12px}.video-stat-label{font-size:12px}.video-stat-value{font-size:13.5px}.collection-stack-count,.collection-stack-note{font-size:12.5px}.stack-item{min-width:58px}.stack-label strong{font-size:12px}.stack-label span{display:none}.collection-title{font-size:clamp(40px,12.2vw,56px)}.collection-description{font-size:15.5px}.collection-player-copy h3{font-size:25px}.collection-player-copy p{font-size:15px}.collection-list{margin-top:46px}.collection-item{grid-template-columns:38px minmax(0,1fr);gap:12px 14px;min-height:0;padding:22px 2px}.collection-item:hover,.collection-item.is-active{margin:0 -8px;padding-right:10px;padding-left:10px}.collection-item-main h3{font-size:19px}.collection-item-main p{font-size:14.5px}.collection-row-stats{grid-column:1/-1;margin-top:8px}.collection-play{grid-column:2;justify-self:start;min-height:44px;font-size:14px}.field-row,.link-row{grid-template-columns:1fr}.form-foot{align-items:stretch;flex-direction:column}.form-foot .button{width:100%}.modal{padding:10px}.modal-panel{max-height:calc(100vh - 20px)}.modal-head,.upload-form{padding-left:18px;padding-right:18px}.link-preview-stats{right:12px;max-width:calc(100% - 24px)}footer{min-height:150px;flex-wrap:wrap;gap:10px 18px;padding:32px 0}footer::before{width:100%}footer>span{margin-left:0}}
-    @media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+    @media(max-width:880px){
+      .nav{display:none}
+      .hero-grid,.section-head,.collection-hero,.collection-player-copy{grid-template-columns:1fr}
+      .hero-side{padding-left:0;border-left:0}
+      .work-grid{grid-template-columns:1fr}
+      .collection-item{grid-template-columns:44px minmax(0,1fr) auto}
+      .collection-item-year{display:none}
+    }
+    @media(max-width:620px){
+      .shell{width:calc(100% - 30px)}
+      .header-inner{min-height:64px}
+      .brand-copy small{display:none}
+      .hero{padding:78px 0}
+      .hero h1{font-size:clamp(48px,15.3vw,72px)}
+      .section{padding:94px 0}
+      .work-info{grid-template-columns:1fr}
+      .field-row,.link-row{grid-template-columns:1fr}
+      .form-foot{align-items:stretch;flex-direction:column}
+    }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="shell header-inner">
-      <a class="brand" href="#home" aria-label="返回首页"><span class="brand-mark">GX</span><span class="brand-copy">GX/HUANG<small>影像 · 声音 · 内容</small></span></a>
-      <nav class="nav" aria-label="主导航"><a class="active" href="#home" data-nav="home">首页</a><a href="#works" data-nav="works">作品</a><a href="mailto:williamgxhuang@163.com">联系</a></nav>
+      <a class="brand" href="#home"><span class="brand-mark">GX</span><span class="brand-copy">GX/HUANG<small>影像 · 声音 · 内容</small></span></a>
+      <nav class="nav"><a href="#home">首页</a><a href="#works">作品</a><a href="mailto:williamgxhuang@163.com">联系</a></nav>
       <button class="header-action" type="button" data-open-upload>＋ 临时预览</button>
     </div>
   </header>
 
   <main>
     <section class="hero" id="home">
-      <div class="shell"><div class="hero-grid">
+      <div class="shell hero-grid">
         <div><p class="eyebrow">GX/HUANG · 个人作品集</p><h1>影像、声音与<br><span>内容作品。</span></h1></div>
         <div class="hero-side"><p>聚焦品牌影像、声音设计、后期制作与内容项目，记录从创意到交付的实际工作与结果。</p><div class="hero-actions"><a class="button primary" href="#works">查看作品</a></div><p class="hero-tags">品牌影像 · 声音设计 · 后期制作 · 内容运营</p></div>
-      </div></div>
+      </div>
     </section>
 
     <section class="section" id="works">
       <div class="shell">
-        <div class="section-head" id="works-head"><div><h2>作品</h2></div><p class="section-intro">影像、声音与内容项目。平台视频会自动读取封面、播放数据与播放器。</p></div>
+        <div class="section-head" id="works-head"><div><h2>作品</h2></div><p class="section-intro">B站会读取实时平台数据；抖音旧作品优先使用静态快照或浏览器永久缓存，避免重复请求。</p></div>
         <div class="work-grid" id="work-grid"></div>
+
         <div class="collection-view" id="collection-view" hidden>
           <div class="collection-toolbar"><button class="collection-back" id="collection-back" type="button">← 返回全部作品</button></div>
-          <div class="collection-hero"><div><p class="collection-eyebrow" id="collection-eyebrow">作品合集</p><h2 class="collection-title" id="collection-title">项目合集</h2><p class="collection-description" id="collection-description"></p></div><span class="collection-count" id="collection-count"></span></div>
-          <div class="collection-player" id="collection-player" hidden><div class="collection-player-media" id="collection-player-media"></div><div class="collection-player-copy"><div><small id="collection-player-kicker">正在播放</small><h3 id="collection-player-title"></h3><p id="collection-player-description"></p></div><a class="collection-player-link" id="collection-player-link" href="#" target="_blank" rel="noopener noreferrer">打开原始链接 ↗</a></div></div>
+          <div class="collection-hero">
+            <div><p class="collection-eyebrow" id="collection-eyebrow">作品合集</p><h2 class="collection-title" id="collection-title"></h2><p class="collection-description" id="collection-description"></p></div>
+            <span class="collection-count" id="collection-count"></span>
+          </div>
+          <div class="collection-player" id="collection-player" hidden>
+            <div class="collection-player-media" id="collection-player-media"></div>
+            <div class="collection-player-copy"><div><small id="collection-player-kicker">正在播放</small><h3 id="collection-player-title"></h3><p id="collection-player-description"></p></div><a class="collection-player-link" id="collection-player-link" target="_blank" rel="noopener noreferrer">打开原始链接 ↗</a></div>
+          </div>
           <div class="collection-list" id="collection-list"></div>
         </div>
       </div>
@@ -156,106 +224,450 @@
 
   <div class="modal" id="upload-modal" aria-hidden="true">
     <div class="modal-backdrop" data-close-modal></div>
-    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="upload-title">
-      <div class="modal-head"><div><h3 id="upload-title">临时预览作品</h3><p id="remote-state">这里只用于浏览器预览，不会自动保存到 GitHub。正式作品请修改 projects.js。</p></div><button class="modal-close" type="button" data-close-modal aria-label="关闭">×</button></div>
+    <section class="modal-panel" role="dialog" aria-modal="true">
+      <div class="modal-head"><div><h3>临时预览作品</h3><p>这里只用于浏览器预览，不会自动保存到 GitHub。正式作品请修改 projects.js。</p></div><button class="modal-close" type="button" data-close-modal>×</button></div>
       <form class="upload-form" id="upload-form">
-        <div class="source-switch" role="tablist" aria-label="视频来源"><button class="source-tab active" type="button" role="tab" aria-selected="true" data-source-mode="file">上传视频文件</button><button class="source-tab" type="button" role="tab" aria-selected="false" data-source-mode="link">粘贴视频链接</button></div>
-        <div class="field"><label for="video-title">作品标题</label><input id="video-title" name="title" type="text" placeholder="例如：城市夜行" required></div>
-        <div class="field-row"><div class="field"><label for="video-category">作品类型</label><select id="video-category" name="category"><option value="motion">影像 / 视频</option><option value="sound">声音 / 混音</option><option value="content">内容 / 运营</option><option value="experimental">实验项目</option></select></div><div class="field"><label for="video-year">年份</label><input id="video-year" name="year" type="number" min="2000" max="2100" value="2026" required></div></div>
-        <div class="field"><label for="video-description">项目说明</label><textarea id="video-description" name="description" placeholder="用 1–2 句话说明你负责的内容、项目背景或结果。"></textarea></div>
-        <div class="source-panel" data-source-panel="file"><label class="dropzone" id="dropzone" for="video-file"><input id="video-file" name="video" type="file" accept="video/mp4,video/quicktime,video/webm,video/*"><span><strong>点击选择或拖入视频文件</strong><span id="file-state">支持 MP4 / MOV / WEBM，可选择大文件</span></span></label><div class="preview-box" id="preview-box"><video id="video-preview" controls muted playsinline></video></div></div>
-        <div class="source-panel" data-source-panel="link" hidden><div class="field"><label for="video-link">视频链接</label><div class="link-row"><input id="video-link" name="videoLink" type="url" inputmode="url" autocomplete="url" placeholder="粘贴 B站 / YouTube / Vimeo / MP4 地址"><button class="button secondary" id="resolve-link" type="button">读取信息</button></div></div><p class="link-status" id="link-status">B站链接会自动读取标题、封面、播放、点赞、收藏、弹幕等数据。</p><div class="link-preview" id="link-preview" aria-live="polite"><div id="link-preview-media" style="width:100%;height:100%"></div><div class="link-preview-caption"><strong id="link-preview-title">视频预览</strong><span id="link-provider">链接</span></div></div></div>
-        <div class="cover-block"><span class="field-label">封面图片（可选）</span><label class="cover-zone" for="cover-file"><input id="cover-file" name="cover" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/*"><span><strong>上传自己的封面图片</strong><span id="cover-state">推荐 16:9；链接模式留空时优先使用平台封面。</span></span></label><div class="cover-preview" id="cover-preview"><img id="cover-preview-image" alt="封面预览"><button type="button" id="remove-cover">移除封面</button></div><p class="cover-help">图片只作为作品卡片封面，不会替代视频内容。</p></div>
-        <div class="upload-progress" id="upload-progress"><div class="progress-head"><span>上传视频</span><span id="upload-progress-label">0%</span></div><div class="progress-track"><i id="upload-progress-bar"></i></div></div>
-        <div class="form-foot"><p class="form-hint" id="form-hint">当前为本地预览。刷新页面后，本地新增项目不会永久保存。</p><button class="button primary" id="upload-submit" type="submit">加入作品集</button></div>
+        <div class="source-switch"><button class="source-tab active" type="button" data-source-mode="file">上传视频文件</button><button class="source-tab" type="button" data-source-mode="link">粘贴视频链接</button></div>
+        <div class="field"><label for="video-title">作品标题</label><input id="video-title" required></div>
+        <div class="field-row"><div class="field"><label for="video-category">作品类型</label><select id="video-category"><option value="motion">影像 / 视频</option><option value="sound">声音 / 混音</option><option value="content">内容 / 运营</option><option value="experimental">实验项目</option></select></div><div class="field"><label for="video-year">年份</label><input id="video-year" type="number" value="2026"></div></div>
+        <div class="field"><label for="video-description">项目说明</label><textarea id="video-description"></textarea></div>
+
+        <div class="source-panel" data-source-panel="file">
+          <label class="dropzone" for="video-file"><input id="video-file" type="file" accept="video/*"><span><strong>点击选择视频文件</strong><br><span id="file-state">MP4 / MOV / WEBM</span></span></label>
+          <div class="preview-box" id="preview-box"><video id="video-preview" controls muted playsinline></video></div>
+        </div>
+
+        <div class="source-panel" data-source-panel="link" hidden>
+          <div class="field"><label for="video-link">视频链接</label><div class="link-row"><input id="video-link" type="url" placeholder="粘贴 B站 / 抖音 / YouTube / Vimeo / MP4 地址"><button class="button secondary" id="resolve-link" type="button">读取信息</button></div></div>
+          <p class="link-status" id="link-status">抖音读取成功后会永久保存在当前浏览器，不会自动刷新旧数据。</p>
+          <div class="link-preview" id="link-preview"><div id="link-preview-media" style="width:100%;height:100%"></div><div class="link-preview-caption"><strong id="link-preview-title">视频预览</strong><span id="link-provider">链接</span></div></div>
+        </div>
+
+        <div class="cover-block"><span class="field-label">封面图片（可选）</span><label class="cover-zone" for="cover-file"><input id="cover-file" type="file" accept="image/*"><span><strong>上传自己的封面图片</strong><br><span id="cover-state">留空时优先使用平台封面。</span></span></label><div class="cover-preview" id="cover-preview"><img id="cover-preview-image" alt="封面预览"><button type="button" id="remove-cover">移除封面</button></div></div>
+        <div class="form-foot"><p class="form-hint">临时预览不会写回 projects.js。</p><button class="button primary" id="upload-submit" type="submit">加入作品集</button></div>
       </form>
     </section>
   </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="projects.js"></script>
   <script>
-    window.NFRAME_UPLOAD_ENDPOINT = window.NFRAME_UPLOAD_ENDPOINT || "";
-    window.NFRAME_META_ENDPOINT = window.NFRAME_META_ENDPOINT || "";
+  (function(){
+    "use strict";
 
-    (function(){
-      var $=function(s,r){return(r||document).querySelector(s)};
-      var $$=function(s,r){return Array.from((r||document).querySelectorAll(s))};
-      var modal=$("#upload-modal"),form=$("#upload-form"),workGrid=$("#work-grid"),worksHead=$("#works-head"),collectionView=$("#collection-view"),collectionBack=$("#collection-back"),collectionEyebrow=$("#collection-eyebrow"),collectionTitle=$("#collection-title"),collectionDescription=$("#collection-description"),collectionCount=$("#collection-count"),collectionList=$("#collection-list"),collectionPlayer=$("#collection-player"),collectionPlayerMedia=$("#collection-player-media"),collectionPlayerKicker=$("#collection-player-kicker"),collectionPlayerTitle=$("#collection-player-title"),collectionPlayerDescription=$("#collection-player-description"),collectionPlayerLink=$("#collection-player-link"),toast=$("#toast");
-      var remoteUploadEndpoint=String(window.NFRAME_UPLOAD_ENDPOINT||"").trim(),metaEndpoint=String(window.NFRAME_META_ENDPOINT||"").trim();
-      var sourceTabs=$$("[data-source-mode]"),sourcePanels=$$("[data-source-panel]"),sourceMode="file";
-      var fileInput=$("#video-file"),dropzone=$("#dropzone"),fileState=$("#file-state"),previewBox=$("#preview-box"),videoPreview=$("#video-preview"),selectedFile=null,videoObjectUrl=null;
-      var coverInput=$("#cover-file"),coverState=$("#cover-state"),coverPreview=$("#cover-preview"),coverPreviewImage=$("#cover-preview-image"),removeCover=$("#remove-cover"),selectedCover=null,coverObjectUrl=null;
-      var videoLinkInput=$("#video-link"),resolveLinkButton=$("#resolve-link"),linkStatus=$("#link-status"),linkPreview=$("#link-preview"),linkPreviewMedia=$("#link-preview-media"),linkPreviewTitle=$("#link-preview-title"),linkProvider=$("#link-provider"),selectedLink=null;
-      var remoteState=$("#remote-state"),formHint=$("#form-hint"),uploadSubmit=$("#upload-submit"),uploadProgress=$("#upload-progress"),uploadProgressBar=$("#upload-progress-bar"),uploadProgressLabel=$("#upload-progress-label"),toastTimer=null;
-      var metaCache={};
+    var $=function(s,r){return(r||document).querySelector(s)};
+    var $$=function(s,r){return Array.from((r||document).querySelectorAll(s))};
 
-      if(remoteUploadEndpoint){remoteState.textContent="视频文件会通过签名地址直接上传到云端。";formHint.textContent="视频会上传到云端；封面仍只用于当前预览。"}
-      function showToast(msg){toast.textContent=msg;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){toast.classList.remove("show")},3200)}
-      function setModal(open){modal.classList.toggle("open",open);modal.setAttribute("aria-hidden",open?"false":"true");document.body.classList.toggle("modal-open",open);if(open)setTimeout(function(){$("#video-title").focus()},40)}
-      $$("[data-open-upload]").forEach(function(b){b.addEventListener("click",function(){setModal(true)})});$$("[data-close-modal]").forEach(function(b){b.addEventListener("click",function(){setModal(false)})});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&modal.classList.contains("open"))setModal(false)});
+    var workGrid=$("#work-grid"), worksHead=$("#works-head"), collectionView=$("#collection-view");
+    var collectionBack=$("#collection-back"), collectionEyebrow=$("#collection-eyebrow"), collectionTitle=$("#collection-title"), collectionDescription=$("#collection-description"), collectionCount=$("#collection-count"), collectionList=$("#collection-list");
+    var collectionPlayer=$("#collection-player"), collectionPlayerMedia=$("#collection-player-media"), collectionPlayerKicker=$("#collection-player-kicker"), collectionPlayerTitle=$("#collection-player-title"), collectionPlayerDescription=$("#collection-player-description"), collectionPlayerLink=$("#collection-player-link");
+    var modal=$("#upload-modal"), form=$("#upload-form"), toast=$("#toast"), toastTimer=null;
+    var sourceTabs=$$("[data-source-mode]"), sourcePanels=$$("[data-source-panel]"), sourceMode="file";
+    var fileInput=$("#video-file"), fileState=$("#file-state"), previewBox=$("#preview-box"), videoPreview=$("#video-preview"), selectedFile=null, videoObjectUrl=null;
+    var coverInput=$("#cover-file"), coverState=$("#cover-state"), coverPreview=$("#cover-preview"), coverPreviewImage=$("#cover-preview-image"), removeCover=$("#remove-cover"), coverObjectUrl=null;
+    var videoLinkInput=$("#video-link"), resolveLinkButton=$("#resolve-link"), linkStatus=$("#link-status"), linkPreview=$("#link-preview"), linkPreviewMedia=$("#link-preview-media"), linkPreviewTitle=$("#link-preview-title"), linkProvider=$("#link-provider"), selectedLink=null;
 
-      function setSourceMode(mode){sourceMode=mode==="link"?"link":"file";sourceTabs.forEach(function(tab){var a=tab.dataset.sourceMode===sourceMode;tab.classList.toggle("active",a);tab.setAttribute("aria-selected",a?"true":"false")});sourcePanels.forEach(function(p){p.hidden=p.dataset.sourcePanel!==sourceMode});remoteState.textContent=sourceMode==="link"?"粘贴外部视频链接，可自动读取平台信息与统计数据。":(remoteUploadEndpoint?"视频文件会通过签名地址直接上传到云端。":"选择本地视频文件，在浏览器中临时预览。");uploadSubmit.textContent=sourceMode==="link"?"加入链接作品":(remoteUploadEndpoint?"上传并加入作品集":"加入作品集")}
-      sourceTabs.forEach(function(tab){tab.addEventListener("click",function(){setSourceMode(tab.dataset.sourceMode)})});
+    var metaEndpoint=String(window.NFRAME_META_ENDPOINT||"").trim();
+    var cacheVersion=String(window.NFRAME_META_CACHE_VERSION||"v1");
+    var metaCache={};
+    var metaProxyPending={};
 
-      function acceptVideoFile(file){if(!file)return;var ok=(file.type&&file.type.indexOf("video/")===0)||/\.(mp4|mov|webm|m4v)$/i.test(file.name||"");if(!ok)return showToast("请选择视频文件。支持 MP4 / MOV / WEBM。");selectedFile=file;if(videoObjectUrl)URL.revokeObjectURL(videoObjectUrl);videoObjectUrl=URL.createObjectURL(file);videoPreview.src=videoObjectUrl;previewBox.classList.add("show");fileState.textContent=file.name+" · "+Math.max(1,Math.round(file.size/1024/1024))+" MB"}
-      fileInput.addEventListener("change",function(){acceptVideoFile(fileInput.files[0])});["dragenter","dragover"].forEach(function(n){dropzone.addEventListener(n,function(e){e.preventDefault();dropzone.classList.add("dragging")})});["dragleave","drop"].forEach(function(n){dropzone.addEventListener(n,function(e){e.preventDefault();dropzone.classList.remove("dragging")})});dropzone.addEventListener("drop",function(e){acceptVideoFile(e.dataTransfer.files[0])});
-      function acceptCover(file){if(!file)return;var ok=(file.type&&file.type.indexOf("image/")===0)||/\.(jpe?g|png|webp|gif)$/i.test(file.name||"");if(!ok)return showToast("请选择 JPG、PNG、WEBP 等图片文件。");selectedCover=file;if(coverObjectUrl)URL.revokeObjectURL(coverObjectUrl);coverObjectUrl=URL.createObjectURL(file);coverPreviewImage.src=coverObjectUrl;coverPreview.classList.add("show");coverState.textContent=file.name+" · "+Math.max(1,Math.round(file.size/1024))+" KB"}
-      coverInput.addEventListener("change",function(){acceptCover(coverInput.files[0])});removeCover.addEventListener("click",function(){selectedCover=null;coverInput.value="";if(coverObjectUrl)URL.revokeObjectURL(coverObjectUrl);coverObjectUrl=null;coverPreviewImage.removeAttribute("src");coverPreview.classList.remove("show");coverState.textContent="推荐 16:9；链接模式留空时优先使用平台封面。"});
+    function showToast(msg){
+      toast.textContent=msg;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer=setTimeout(function(){toast.classList.remove("show")},3200);
+    }
 
-      function formatDuration(sec){if(!isFinite(sec)||sec<=0)return"视频";var m=Math.floor(sec/60),s=Math.floor(sec%60).toString().padStart(2,"0");return m+":"+s}
-      function cleanNumber(v){var n=Number(v);return Number.isFinite(n)&&n>=0?n:null}
-      function normalizeStats(raw){raw=raw||{};return{view:cleanNumber(raw.view),like:cleanNumber(raw.like),favorite:cleanNumber(raw.favorite),coin:cleanNumber(raw.coin),danmaku:cleanNumber(raw.danmaku),reply:cleanNumber(raw.reply),share:cleanNumber(raw.share)}}
-      function hasStats(stats){return!!(stats&&Object.keys(stats).some(function(k){return stats[k]!==null&&stats[k]!==undefined}))}
-      function formatCount(v){var n=Number(v);if(!Number.isFinite(n)||n<0)return"—";if(n>=1e8){var y=n/1e8;return(y>=10?y.toFixed(0):y.toFixed(1)).replace(/\.0$/,"")+"亿"}if(n>=1e4){var w=n/1e4;return(w>=100?w.toFixed(0):w.toFixed(1)).replace(/\.0$/,"")+"万"}return Math.round(n).toLocaleString("zh-CN")}
-      function createStats(stats,className,source,keys){if(!hasStats(stats))return null;var labels={view:"播放",like:"点赞",favorite:"收藏",coin:"投币",danmaku:"弹幕",reply:"评论",share:"分享"},order=keys||["view","like","favorite","danmaku"],wrap=document.createElement("div");wrap.className="video-stats"+(className?" "+className:"");wrap.dataset.source=source||"平台数据";order.forEach(function(k){if(stats[k]===null||stats[k]===undefined)return;var item=document.createElement("span"),label=document.createElement("span"),value=document.createElement("strong");item.className="video-stat";item.title=labels[k]+"："+Math.round(stats[k]).toLocaleString("zh-CN");label.className="video-stat-label";label.textContent=labels[k];value.className="video-stat-value";value.textContent=formatCount(stats[k]);item.append(label,value);wrap.appendChild(item)});return wrap.children.length?wrap:null}
-      function fetchJson(url){return fetch(url,{method:"GET",mode:"cors",credentials:"omit"}).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})}
-      function jsonp(url){return new Promise(function(resolve,reject){var cb="__gx_jsonp_"+Date.now()+"_"+Math.random().toString(36).slice(2),script=document.createElement("script"),timer;function clean(){clearTimeout(timer);if(script.parentNode)script.remove();try{delete window[cb]}catch(e){window[cb]=undefined}}window[cb]=function(d){clean();resolve(d)};script.onerror=function(){clean();reject(new Error("跨域读取失败"))};timer=setTimeout(function(){clean();reject(new Error("读取超时"))},8000);script.src=url+(url.indexOf("?")>=0?"&":"?")+"jsonp=jsonp&callback="+encodeURIComponent(cb);document.head.appendChild(script)})}
-      function parseBilibiliId(url){var m=String(url||"").match(/(BV[0-9A-Za-z]{10,})/i);if(m)return{type:"bvid",id:m[1]};var av=String(url||"").match(/(?:\/video\/|\b)av(\d+)/i);return av?{type:"aid",id:av[1]}:null}
-      function parseYouTubeId(url){try{var u=new URL(url);if(/youtu\.be$/i.test(u.hostname))return u.pathname.split("/").filter(Boolean)[0]||"";if(/(^|\.)youtube\.com$/i.test(u.hostname)||/(^|\.)youtube-nocookie\.com$/i.test(u.hostname)){if(u.searchParams.get("v"))return u.searchParams.get("v");var p=u.pathname.split("/").filter(Boolean);if(["shorts","embed","live"].indexOf(p[0])>=0&&p[1])return p[1]}}catch(e){}return""}
-      function parseVimeoId(url){try{var u=new URL(url);if(!/(^|\.)vimeo\.com$/i.test(u.hostname))return"";return u.pathname.split("/").filter(Boolean).reverse().find(function(p){return/^\d+$/.test(p)})||""}catch(e){return""}}
-      function proxyMeta(url){if(!metaEndpoint)return Promise.reject(new Error("未配置元数据接口"));return fetchJson(metaEndpoint+(metaEndpoint.indexOf("?")>=0?"&":"?")+"url="+encodeURIComponent(url))}
+    function normalizeUrl(raw){
+      var value=String(raw||"").trim();
+      if(value&&!/^https?:\/\//i.test(value))value="https://"+value;
+      return value;
+    }
 
-      async function resolveBilibili(url,id){var api="https://api.bilibili.com/x/web-interface/view?"+(id.type==="bvid"?"bvid="+encodeURIComponent(id.id):"aid="+encodeURIComponent(id.id)),payload=null;try{payload=await fetchJson(api)}catch(e){try{payload=await jsonp(api)}catch(e2){}}var data=payload&&payload.code===0?payload.data:null;if(!data&&metaEndpoint){try{var p=await proxyMeta(url);return{kind:p.kind||"embed",provider:p.provider||"B站",originalUrl:url,embedUrl:p.embedUrl||(id.type==="bvid"?"https://player.bilibili.com/player.html?isOutside=true&bvid="+encodeURIComponent(id.id)+"&p=1&autoplay=1&danmaku=0":"https://player.bilibili.com/player.html?isOutside=true&aid="+encodeURIComponent(id.id)+"&p=1&autoplay=1&danmaku=0"),posterEmbedUrl:id.type==="bvid"?"https://player.bilibili.com/player.html?isOutside=true&bvid="+encodeURIComponent(id.id)+"&p=1&poster=1&autoplay=0&danmaku=0":"https://player.bilibili.com/player.html?isOutside=true&aid="+encodeURIComponent(id.id)+"&p=1&poster=1&autoplay=0&danmaku=0",thumbnail:p.thumbnail||p.thumbnailUrl||"",title:p.title||"B站视频",description:p.description||"B站外部视频",durationLabel:p.durationLabel||"B站",stats:normalizeStats(p.stats||p.stat||{})}}catch(e3){}}
-        return{kind:"embed",provider:"B站",originalUrl:url,embedUrl:id.type==="bvid"?"https://player.bilibili.com/player.html?isOutside=true&bvid="+encodeURIComponent(id.id)+"&p=1&autoplay=1&danmaku=0":"https://player.bilibili.com/player.html?isOutside=true&aid="+encodeURIComponent(id.id)+"&p=1&autoplay=1&danmaku=0",posterEmbedUrl:id.type==="bvid"?"https://player.bilibili.com/player.html?isOutside=true&bvid="+encodeURIComponent(id.id)+"&p=1&poster=1&autoplay=0&danmaku=0":"https://player.bilibili.com/player.html?isOutside=true&aid="+encodeURIComponent(id.id)+"&p=1&poster=1&autoplay=0&danmaku=0",thumbnail:data&&data.pic?String(data.pic).replace(/^http:/,"https:"):"",title:data&&data.title?data.title:"B站视频",description:data&&data.owner&&data.owner.name?"B站 · "+data.owner.name:"B站外部视频",durationLabel:data&&data.duration?formatDuration(data.duration):"B站",stats:normalizeStats(data&&data.stat?data.stat:{})}}
-      async function resolveYouTube(url,id){var canonical="https://www.youtube.com/watch?v="+encodeURIComponent(id),title="YouTube 视频",desc="YouTube 外部视频";try{var m=await fetchJson("https://www.youtube.com/oembed?format=json&url="+encodeURIComponent(canonical));if(m.title)title=m.title;if(m.author_name)desc="YouTube · "+m.author_name}catch(e){}return{kind:"embed",provider:"YouTube",originalUrl:url,embedUrl:"https://www.youtube-nocookie.com/embed/"+encodeURIComponent(id)+"?rel=0&autoplay=1",thumbnail:"https://i.ytimg.com/vi/"+encodeURIComponent(id)+"/hqdefault.jpg",title:title,description:desc,durationLabel:"YouTube"}}
-      async function resolveVimeo(url,id){try{var m=await fetchJson("https://vimeo.com/api/oembed.json?url="+encodeURIComponent(url));return{kind:"embed",provider:"Vimeo",originalUrl:url,embedUrl:"https://player.vimeo.com/video/"+encodeURIComponent(id)+"?autoplay=1",thumbnail:m.thumbnail_url||"",title:m.title||"Vimeo 视频",description:m.author_name?"Vimeo · "+m.author_name:"Vimeo 外部视频",durationLabel:m.duration?formatDuration(m.duration):"Vimeo"}}catch(e){return{kind:"embed",provider:"Vimeo",originalUrl:url,embedUrl:"https://player.vimeo.com/video/"+encodeURIComponent(id)+"?autoplay=1",thumbnail:"",title:"Vimeo 视频",description:"Vimeo 外部视频",durationLabel:"Vimeo"}}}
-      async function resolveVideoLink(raw){var value=String(raw||"").trim();if(!value)throw new Error("请先粘贴视频链接。");if(!/^https?:\/\//i.test(value))value="https://"+value;var u;try{u=new URL(value)}catch(e){throw new Error("链接格式不正确。")}var key=u.toString();if(metaCache[key])return metaCache[key];var result,b=parseBilibiliId(value),y=parseYouTubeId(value),v=parseVimeoId(value);if(b)result=await resolveBilibili(value,b);else if(y)result=await resolveYouTube(value,y);else if(v)result=await resolveVimeo(value,v);else if(/\.(mp4|webm|ogg|m4v|mov)(?:$|[?#])/i.test(u.pathname+u.search+u.hash))result={kind:"video",provider:"视频直链",originalUrl:value,sourceUrl:value,thumbnail:"",title:"链接视频",description:"视频直链 · 浏览器原生播放",durationLabel:"视频"};else if(metaEndpoint){var p=await proxyMeta(value);result={kind:p.kind||(p.embedUrl?"embed":"external"),provider:p.provider||"网页视频",originalUrl:value,embedUrl:p.embedUrl||"",sourceUrl:p.sourceUrl||"",thumbnail:p.thumbnail||p.thumbnailUrl||"",title:p.title||"网页视频",description:p.description||"外部视频链接",durationLabel:p.durationLabel||"链接",stats:normalizeStats(p.stats||p.stat||{})}}else result={kind:"external",provider:"网页链接",originalUrl:value,thumbnail:"",title:"网页视频",description:"该站点暂时无法直接读取封面或播放器。",durationLabel:"链接"};metaCache[key]=result;return result}
+    function cleanNumber(v){
+      var n=Number(v);
+      return Number.isFinite(n)&&n>=0?n:null;
+    }
 
-      function renderLinkPreview(meta){linkPreviewMedia.innerHTML="";if(meta.thumbnail){var img=document.createElement("img");img.src=meta.thumbnail;img.alt="";img.referrerPolicy="no-referrer";linkPreviewMedia.appendChild(img)}else if(meta.posterEmbedUrl){var f=document.createElement("iframe");f.src=meta.posterEmbedUrl;f.title="视频封面预览";f.loading="lazy";f.tabIndex=-1;linkPreviewMedia.appendChild(f)}else if(meta.kind==="video"&&meta.sourceUrl){var vid=document.createElement("video");vid.src=meta.sourceUrl;vid.muted=true;vid.playsInline=true;vid.preload="metadata";linkPreviewMedia.appendChild(vid)}else{var blank=document.createElement("div");blank.className="media-placeholder";blank.innerHTML="<span>外部视频</span><b>暂无平台封面</b><span>你可以上传自己的封面图片</span>";linkPreviewMedia.appendChild(blank)}var old=linkPreview.querySelector(".link-preview-stats");if(old)old.remove();var stats=createStats(meta.stats,"link-preview-stats",meta.provider==="B站"?"B站数据":"平台数据",["view","like","favorite"]);if(stats)linkPreview.appendChild(stats);linkPreviewTitle.textContent=meta.title||"视频预览";linkProvider.textContent=meta.provider||"链接";linkPreview.classList.add("show")}
-      async function readVideoLink(){selectedLink=null;linkStatus.className="link-status";linkStatus.textContent="正在读取视频信息…";resolveLinkButton.disabled=true;try{var meta=await resolveVideoLink(videoLinkInput.value);selectedLink=meta;videoLinkInput.value=meta.originalUrl;var ti=$("#video-title"),di=$("#video-description");if(!ti.value.trim())ti.value=meta.title||"链接视频";if(!di.value.trim()&&meta.description)di.value=meta.description;renderLinkPreview(meta);linkStatus.className="link-status ok";linkStatus.textContent=meta.provider==="B站"&&hasStats(meta.stats)?"已读取 B站标题、封面与播放/点赞/收藏等当前数据。":"已读取视频信息。";return meta}catch(e){linkPreview.classList.remove("show");linkStatus.className="link-status error";linkStatus.textContent=e.message||"无法读取这个链接。";return null}finally{resolveLinkButton.disabled=false}}
-      resolveLinkButton.addEventListener("click",readVideoLink);videoLinkInput.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();readVideoLink()}});videoLinkInput.addEventListener("input",function(){selectedLink=null;linkPreview.classList.remove("show");linkStatus.className="link-status";linkStatus.textContent="链接已变化，请重新点击“读取信息”。"});
+    function normalizeStats(raw){
+      raw=raw||{};
+      return{
+        view:cleanNumber(raw.view),
+        like:cleanNumber(raw.like),
+        favorite:cleanNumber(raw.favorite),
+        coin:cleanNumber(raw.coin),
+        danmaku:cleanNumber(raw.danmaku),
+        reply:cleanNumber(raw.reply),
+        share:cleanNumber(raw.share)
+      };
+    }
 
-      function categoryLabel(c){return{motion:"影像 / 视频",sound:"声音 / 混音",content:"内容 / 运营",experimental:"实验项目"}[c]||"作品"}
-      function createCardBase(title,category,year,description,label){var card=document.createElement("article");card.className="work-card";var media=document.createElement("div");media.className="work-media";var chip=document.createElement("span");chip.className="media-chip";chip.textContent=label||categoryLabel(category);media.appendChild(chip);var info=document.createElement("div");info.className="work-info";var copy=document.createElement("div"),h=document.createElement("h3"),p=document.createElement("p"),y=document.createElement("span");h.textContent=title;p.textContent=description||"新加入的作品。";y.className="work-year";y.textContent=year||"";copy.append(h,p);info.append(copy,y);card.append(media,info);return{card:card,media:media,copy:copy}}
-      function addCover(media,url,title){if(url){var img=document.createElement("img");img.src=url;img.alt=title+" 封面";img.loading="lazy";img.referrerPolicy="no-referrer";media.insertBefore(img,media.firstChild);return img}var ph=document.createElement("div");ph.className="media-placeholder";ph.innerHTML="<span>新项目</span><b></b><span>未上传封面图片</span>";ph.querySelector("b").textContent=title;media.insertBefore(ph,media.firstChild);return ph}
-      function activateMeta(base,meta,title){var play=document.createElement("button");play.className="media-play";play.type="button";play.textContent=meta.embedUrl||meta.sourceUrl?"播放视频":"打开链接";play.addEventListener("click",function(e){e.stopPropagation();if(meta.kind==="video"&&meta.sourceUrl){base.media.querySelectorAll("img,.media-placeholder,iframe,video").forEach(function(x){x.remove()});var v=document.createElement("video");v.src=meta.sourceUrl;v.controls=true;v.autoplay=true;v.playsInline=true;base.media.insertBefore(v,base.media.firstChild);play.remove()}else if(meta.embedUrl){base.media.querySelectorAll("img,.media-placeholder,iframe,video").forEach(function(x){x.remove()});var f=document.createElement("iframe");f.src=meta.embedUrl;f.title=title;f.allow="autoplay; fullscreen; picture-in-picture";f.allowFullscreen=true;base.media.insertBefore(f,base.media.firstChild);play.remove()}else if(meta.originalUrl)window.open(meta.originalUrl,"_blank","noopener,noreferrer")});base.media.appendChild(play)}
-      function insertLinkedCard(meta,title,category,year,description,cover,label){var base=createCardBase(title,category,year,description||meta.description,label),finalCover=cover||meta.thumbnail||"";if(finalCover)addCover(base.media,finalCover,title);else if(meta.posterEmbedUrl){var f=document.createElement("iframe");f.src=meta.posterEmbedUrl;f.title=title+" 封面";f.loading="lazy";f.tabIndex=-1;base.media.insertBefore(f,base.media.firstChild)}else addCover(base.media,"",title);var stats=createStats(meta.stats,"",meta.provider==="B站"?"B站数据":"平台数据",["view","like","favorite","danmaku"]);if(stats)base.copy.appendChild(stats);if(meta.originalUrl){var a=document.createElement("a");a.className="external-link";a.href=meta.originalUrl;a.target="_blank";a.rel="noopener noreferrer";a.textContent="打开原始链接 ↗";base.copy.appendChild(a)}activateMeta(base,meta,title);workGrid.appendChild(base.card)}
+    function normalizeMeta(meta,fallbackUrl){
+      meta=meta||{};
+      return{
+        kind:meta.kind||(meta.embedUrl?"embed":meta.sourceUrl?"video":"external"),
+        provider:meta.provider||"网页视频",
+        originalUrl:meta.originalUrl||fallbackUrl||"",
+        embedUrl:meta.embedUrl||"",
+        posterEmbedUrl:meta.posterEmbedUrl||"",
+        sourceUrl:meta.sourceUrl||"",
+        thumbnail:meta.thumbnail||meta.thumbnailUrl||"",
+        title:meta.title||"网页视频",
+        description:meta.description||"外部视频链接",
+        durationLabel:meta.durationLabel||"链接",
+        stats:normalizeStats(meta.stats||meta.stat||{})
+      };
+    }
 
-      function collectionName(p){return[p.englishTitle,p.title].filter(Boolean).join(" / ")||"未命名合集"}
-      function collectionCountText(p){var w=Array.isArray(p.works)?p.works:[];return p.countLabel||(w.length?w.length+" 个作品":"作品合集")}
-      function stackGeometry(i,count){var width=count<=1?42:count===2?34:count===3?29:count===4?25:count===5?23:21,edge=7,avail=100-edge*2-width,step=count<=1?0:avail/(count-1),left=count<=1?(100-width)/2:edge+step*i,center=(count-1)/2,delta=i-center,spread=count<=1?0:Math.min(2.2,8/Math.max(1,count-1));return{width:width.toFixed(2)+"%",left:left.toFixed(2)+"%",hoverLeft:Math.max(2,Math.min(98-width,left+delta*spread)).toFixed(2)+"%",openLeft:Math.max(0,Math.min(100-width,left+delta*spread*2.2)).toFixed(2)+"%",rotate:(delta*1.8).toFixed(2)+"deg",hoverRotate:(delta*2.5).toFixed(2)+"deg",openRotate:(delta*3).toFixed(2)+"deg",y:(Math.abs(delta)*1.6+3).toFixed(2)+"px",hoverY:(Math.abs(delta)*1.4-5).toFixed(2)+"px",z:String(i+2)}}
-      function replaceStackImage(item,url,title){var old=item.querySelector("img");if(old)old.remove();item.classList.toggle("is-placeholder",!url);if(url){var img=document.createElement("img");img.src=url;img.alt=title+" 封面";img.loading="lazy";img.referrerPolicy="no-referrer";item.insertBefore(img,item.querySelector(".stack-label"))}}
-      function renderStack(media,project){var works=Array.isArray(project.works)?project.works.slice(0,6):[];if(!works.length)return false;var stack=document.createElement("div");stack.className="collection-stack";stack.setAttribute("aria-hidden","true");var count=document.createElement("span");count.className="collection-stack-count";count.textContent=collectionCountText(project);stack.appendChild(count);works.forEach(function(work,i){work=work||{};var g=stackGeometry(i,works.length),item=document.createElement("div");item.className="stack-item"+(work.cover?"":" is-placeholder");item.style.setProperty("--stack-width",g.width);item.style.setProperty("--stack-left",g.left);item.style.setProperty("--stack-hover-left",g.hoverLeft);item.style.setProperty("--stack-open-left",g.openLeft);item.style.setProperty("--stack-rotate",g.rotate);item.style.setProperty("--stack-hover-rotate",g.hoverRotate);item.style.setProperty("--stack-open-rotate",g.openRotate);item.style.setProperty("--stack-y",g.y);item.style.setProperty("--stack-hover-y",g.hoverY);item.style.setProperty("--stack-z",g.z);var spine=document.createElement("span");spine.className="stack-spine";var label=document.createElement("div");label.className="stack-label";var strong=document.createElement("strong");strong.textContent=work.title||("作品 "+String(i+1).padStart(2,"0"));label.appendChild(strong);if(work.year||work.role){var sub=document.createElement("span");sub.textContent=work.year||work.role;label.appendChild(sub)}item.append(spine,label);stack.appendChild(item);if(work.cover)replaceStackImage(item,work.cover,strong.textContent);else if(work.video)resolveVideoLink(work.video).then(function(m){if(m.thumbnail)replaceStackImage(item,m.thumbnail,strong.textContent)}).catch(function(){})});var shelf=document.createElement("div");shelf.className="collection-stack-shelf";stack.appendChild(shelf);var note=document.createElement("div");note.className="collection-stack-note";note.textContent="点击展开作品列表";stack.appendChild(note);media.insertBefore(stack,media.firstChild);return true}
-      function resetCollectionPlayer(){collectionPlayer.hidden=true;collectionPlayerMedia.innerHTML="";collectionPlayerTitle.textContent="";collectionPlayerDescription.textContent="";var old=collectionPlayerTitle.parentElement.querySelector(".video-stats.is-player");if(old)old.remove();collectionPlayerLink.removeAttribute("href");$$(".collection-item",collectionList).forEach(function(r){r.classList.remove("is-active")})}
-      async function playCollectionWork(work,index,row,button){var url=String(work.video||"").trim();if(!url)return showToast("这个子作品还没有填写视频链接。");var oldText=button.textContent;button.disabled=true;button.textContent="读取中…";try{var meta=await resolveVideoLink(url);collectionPlayerMedia.innerHTML="";if(meta.kind==="video"&&meta.sourceUrl){var v=document.createElement("video");v.src=meta.sourceUrl;v.controls=true;v.autoplay=true;v.playsInline=true;collectionPlayerMedia.appendChild(v)}else if(meta.embedUrl){var f=document.createElement("iframe");f.src=meta.embedUrl;f.title=work.title||meta.title||"合集视频";f.allow="autoplay; fullscreen; picture-in-picture";f.allowFullscreen=true;collectionPlayerMedia.appendChild(f)}else{var box=document.createElement("div"),a=document.createElement("a");box.className="collection-player-fallback";a.href=meta.originalUrl||url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="这个来源无法内嵌，点击打开原始视频 ↗";box.appendChild(a);collectionPlayerMedia.appendChild(box)}var resolved=work.title||meta.title||("作品 "+String(index+1).padStart(2,"0")),parts=[work.role||"",work.year||"",meta.provider||""].filter(Boolean);collectionPlayerKicker.textContent="正在播放 · "+String(index+1).padStart(2,"0");collectionPlayerTitle.textContent=resolved;collectionPlayerDescription.textContent=work.description||parts.join(" · ");var main=collectionPlayerTitle.parentElement,previous=main.querySelector(".video-stats.is-player");if(previous)previous.remove();var stats=createStats(meta.stats,"is-player",meta.provider==="B站"?"B站当前数据":"平台数据",["view","like","favorite","coin","danmaku"]);if(stats)main.appendChild(stats);collectionPlayerLink.href=meta.originalUrl||url;collectionPlayer.hidden=false;$$(".collection-item",collectionList).forEach(function(r){r.classList.remove("is-active")});row.classList.add("is-active");collectionPlayer.scrollIntoView({behavior:"smooth",block:"nearest"})}catch(e){showToast(e.message||"无法读取这个视频链接。")}finally{button.disabled=false;button.textContent=oldText}}
-      function hydrateRowStats(work,main){var url=String(work&&work.video||"").trim();if(!url||!parseBilibiliId(url))return;resolveVideoLink(url).then(function(meta){var old=main.querySelector(".collection-row-stats");if(old)old.remove();var stats=createStats(meta.stats,"collection-row-stats","B站数据",["view","like","favorite","danmaku"]);if(stats)main.appendChild(stats)}).catch(function(){})}
-      function openCollection(project){var works=Array.isArray(project.works)?project.works:[];worksHead.hidden=true;workGrid.hidden=true;collectionView.hidden=false;resetCollectionPlayer();collectionEyebrow.textContent=(project.label||"作品合集")+(project.year?" · "+project.year:"");collectionTitle.textContent=collectionName(project);collectionDescription.textContent=project.collectionDescription||project.description||"";collectionCount.textContent=collectionCountText(project);collectionList.innerHTML="";if(!works.length){var empty=document.createElement("div");empty.className="collection-empty";empty.textContent="这个合集还没有填写子作品。打开 projects.js，在 works: [ ] 中加入作品即可。";collectionList.appendChild(empty)}else works.forEach(function(work,i){var row=document.createElement("article");row.className="collection-item";var num=document.createElement("span");num.className="collection-index";num.textContent=String(i+1).padStart(2,"0");var main=document.createElement("div");main.className="collection-item-main";var h=document.createElement("h3"),p=document.createElement("p");h.textContent=work.title||("作品 "+String(i+1).padStart(2,"0"));p.textContent=work.role||work.description||"";main.appendChild(h);if(p.textContent)main.appendChild(p);var year=document.createElement("span");year.className="collection-item-year";year.textContent=work.year||"";var play=document.createElement("button");play.className="collection-play";play.type="button";play.textContent=work.video?"播放":"待配置";play.disabled=!work.video;play.addEventListener("click",function(){playCollectionWork(work,i,row,play)});row.append(num,main,year,play);collectionList.appendChild(row);hydrateRowStats(work,main)});$("#works").scrollIntoView({behavior:"smooth",block:"start"})}
-      function triggerCollection(project,card){if(!card)return openCollection(project);if(card.__opening)return;var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(reduced)return openCollection(project);card.__opening=true;card.classList.add("is-opening");setTimeout(function(){card.classList.remove("is-opening");card.__opening=false;openCollection(project)},360)}
-      function insertCollection(project){var title=collectionName(project),base=createCardBase(title,project.category||"sound",project.year||"",project.description||"",project.label||"作品合集");base.card.classList.add("collection-card");if(!renderStack(base.media,project))addCover(base.media,project.cover||"",project.title||title);var tag=document.createElement("span");tag.className="collection-tag";tag.textContent=collectionCountText(project)+" · 查看完整列表 →";base.copy.appendChild(tag);var open=document.createElement("button");open.className="media-play";open.type="button";open.textContent="展开合集";open.addEventListener("click",function(e){e.stopPropagation();triggerCollection(project,base.card)});base.media.appendChild(open);base.card.tabIndex=0;base.card.setAttribute("role","button");base.card.addEventListener("click",function(e){if(e.target.closest("button,a,iframe,video"))return;triggerCollection(project,base.card)});base.card.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();triggerCollection(project,base.card)}});workGrid.appendChild(base.card)}
-      collectionBack.addEventListener("click",function(){resetCollectionPlayer();collectionView.hidden=true;workGrid.hidden=false;worksHead.hidden=false;$("#works").scrollIntoView({behavior:"smooth",block:"start"})});
+    function hasStats(stats){
+      return!!(stats&&Object.keys(stats).some(function(k){return stats[k]!==null&&stats[k]!==undefined}));
+    }
 
-      async function renderProjects(){workGrid.innerHTML="";var projects=window.PORTFOLIO_PROJECTS||[];for(var i=0;i<projects.length;i++){var p=projects[i],title=[p.englishTitle,p.title].filter(Boolean).join(" / ")||"未命名作品";if(p.type==="collection"||Array.isArray(p.works)){insertCollection(p);continue}var baseMeta=null,url=String(p.video||"").trim();if(url){try{baseMeta=await resolveVideoLink(url)}catch(e){console.warn("无法读取外部视频信息：",url,e)}}if(baseMeta){insertLinkedCard(baseMeta,title,p.category||"motion",p.year||"",p.description||"",p.cover||"",p.label||"")}else{var base=createCardBase(title,p.category||"motion",p.year||"",p.description||"",p.label||"");addCover(base.media,p.cover||"",p.title||title);var play=document.createElement("button");play.className="media-play";play.type="button";play.textContent=url?"打开视频":"视频待配置";play.disabled=!url;play.addEventListener("click",function(){showToast("这个项目暂时无法读取视频，请检查链接。")});base.media.appendChild(play);workGrid.appendChild(base.card)}}}
-      renderProjects().catch(function(e){console.error("作品列表加载失败：",e)});
+    function formatCount(v){
+      var n=Number(v);
+      if(!Number.isFinite(n)||n<0)return"—";
+      if(n>=1e8){var y=n/1e8;return(y>=10?y.toFixed(0):y.toFixed(1)).replace(/\.0$/,"")+"亿"}
+      if(n>=1e4){var w=n/1e4;return(w>=100?w.toFixed(0):w.toFixed(1)).replace(/\.0$/,"")+"万"}
+      return Math.round(n).toLocaleString("zh-CN");
+    }
 
-      function setUploadProgress(percent,label){var safe=Math.max(0,Math.min(100,Math.round(percent)));uploadProgress.classList.add("show");uploadProgressBar.style.width=safe+"%";uploadProgressLabel.textContent=label||safe+"%"}
-      function requestTicket(file,meta){return fetch(remoteUploadEndpoint,{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({filename:file.name,contentType:file.type||"application/octet-stream",size:file.size,title:meta.title,category:meta.category,year:meta.year})}).then(function(r){if(!r.ok)throw new Error("无法取得上传地址（HTTP "+r.status+"）");return r.json()}).then(function(t){if(!t.uploadUrl)throw new Error("上传端点没有返回 uploadUrl。");return t})}
-      function uploadSigned(ticket,file){return new Promise(function(resolve,reject){var xhr=new XMLHttpRequest();xhr.open(ticket.method||"PUT",ticket.uploadUrl,true);Object.keys(ticket.headers||{}).forEach(function(k){xhr.setRequestHeader(k,ticket.headers[k])});xhr.upload.addEventListener("progress",function(e){if(e.lengthComputable)setUploadProgress(e.loaded/e.total*100)});xhr.addEventListener("load",function(){if(xhr.status>=200&&xhr.status<300){setUploadProgress(100,"完成");resolve(ticket)}else reject(new Error("视频上传失败（HTTP "+xhr.status+"）"))});xhr.addEventListener("error",function(){reject(new Error("视频上传失败，请检查存储端点和 CORS 设置。"))});xhr.send(file)})}
-      function resetForm(){form.reset();$("#video-year").value="2026";selectedFile=null;fileInput.value="";fileState.textContent="支持 MP4 / MOV / WEBM，可选择大文件";previewBox.classList.remove("show");videoPreview.removeAttribute("src");selectedLink=null;linkPreview.classList.remove("show");linkStatus.className="link-status";linkStatus.textContent="B站链接会自动读取标题、封面、播放、点赞、收藏、弹幕等数据。";selectedCover=null;coverInput.value="";coverPreview.classList.remove("show");coverPreviewImage.removeAttribute("src");coverState.textContent="推荐 16:9；链接模式留空时优先使用平台封面。";uploadProgress.classList.remove("show");uploadProgressBar.style.width="0";uploadProgressLabel.textContent="0%";uploadSubmit.disabled=false;videoObjectUrl=null;coverObjectUrl=null;setSourceMode("file")}
-      form.addEventListener("submit",async function(e){e.preventDefault();var title=$("#video-title").value.trim()||"未命名作品",category=$("#video-category").value,year=$("#video-year").value||"2026",description=$("#video-description").value.trim(),cover=coverObjectUrl||"";if(sourceMode==="link"){if(!selectedLink)selectedLink=await readVideoLink();if(!selectedLink)return showToast("请先粘贴并读取一个可用的视频链接。");insertLinkedCard(selectedLink,title||selectedLink.title,category,year,description,cover,"");coverObjectUrl=null;resetForm();setModal(false);showToast("链接作品已加入当前作品集预览。");return}if(!selectedFile)return showToast("请先选择一个视频文件。");uploadSubmit.disabled=true;if(!remoteUploadEndpoint){var local=videoObjectUrl;videoObjectUrl=null;coverObjectUrl=null;insertLinkedCard({kind:"video",provider:"本地视频",originalUrl:local,sourceUrl:local,thumbnail:"",description:"本地视频预览"},title,category,year,description,cover,"");resetForm();setModal(false);showToast("视频已加入当前作品集预览。");return}try{setUploadProgress(0,"准备上传");var ticket=await requestTicket(selectedFile,{title:title,category:category,year:year});ticket=await uploadSigned(ticket,selectedFile);var remote=ticket.publicUrl||ticket.assetUrl||ticket.videoUrl;if(!remote)throw new Error("上传完成，但接口没有返回 publicUrl。");insertLinkedCard({kind:"video",provider:"云端视频",originalUrl:remote,sourceUrl:remote,thumbnail:"",description:"云端视频"},title,category,year,description,cover,"");resetForm();setModal(false);showToast("视频上传完成，并已加入作品集预览。")}catch(err){uploadSubmit.disabled=false;setUploadProgress(0,"失败");showToast(err.message||"上传失败，请稍后重试。")}});
+    function statsSource(provider,player){
+      if(provider==="B站")return player?"B站当前数据":"B站数据";
+      if(provider==="抖音")return player?"抖音快照":"抖音数据";
+      return"平台数据";
+    }
 
-      var sections=$$("main section[id]"),navLinks=$$("[data-nav]");if("IntersectionObserver" in window){var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting)navLinks.forEach(function(link){link.classList.toggle("active",link.dataset.nav===entry.target.id)})})},{rootMargin:"-35% 0px -55% 0px",threshold:0});sections.forEach(function(s){observer.observe(s)})}
-    }());
+    function statsKeys(provider,player){
+      if(provider==="抖音")return["view","like","favorite","reply","share"];
+      if(provider==="B站"&&player)return["view","like","favorite","coin","danmaku"];
+      if(provider==="B站")return["view","like","favorite","danmaku"];
+      return["view","like","favorite","reply","share"];
+    }
+
+    function createStats(stats,className,source,keys){
+      if(!hasStats(stats))return null;
+      var labels={view:"播放",like:"点赞",favorite:"收藏",coin:"投币",danmaku:"弹幕",reply:"评论",share:"分享"};
+      var wrap=document.createElement("div");
+      wrap.className="video-stats"+(className?" "+className:"");
+      wrap.dataset.source=source||"平台数据";
+      (keys||Object.keys(labels)).forEach(function(k){
+        if(stats[k]===null||stats[k]===undefined)return;
+        var item=document.createElement("span"),label=document.createElement("span"),value=document.createElement("strong");
+        item.className="video-stat";
+        label.className="video-stat-label";
+        value.className="video-stat-value";
+        label.textContent=labels[k];
+        value.textContent=formatCount(stats[k]);
+        item.title=labels[k]+"："+Math.round(stats[k]).toLocaleString("zh-CN");
+        item.append(label,value);
+        wrap.appendChild(item);
+      });
+      return wrap.children.length?wrap:null;
+    }
+
+    function fetchJson(url){
+      return fetch(url,{method:"GET",mode:"cors",credentials:"omit"}).then(function(r){
+        if(!r.ok)return r.json().catch(function(){return{}}).then(function(body){throw new Error(body.error||("HTTP "+r.status))});
+        return r.json();
+      });
+    }
+
+    function jsonp(url){
+      return new Promise(function(resolve,reject){
+        var cb="__gx_jsonp_"+Date.now()+"_"+Math.random().toString(36).slice(2),script=document.createElement("script"),timer;
+        function clean(){clearTimeout(timer);if(script.parentNode)script.remove();try{delete window[cb]}catch(e){window[cb]=undefined}}
+        window[cb]=function(d){clean();resolve(d)};
+        script.onerror=function(){clean();reject(new Error("跨域读取失败"))};
+        timer=setTimeout(function(){clean();reject(new Error("读取超时"))},8000);
+        script.src=url+(url.indexOf("?")>=0?"&":"?")+"jsonp=jsonp&callback="+encodeURIComponent(cb);
+        document.head.appendChild(script);
+      });
+    }
+
+    function parseBilibiliId(url){
+      var m=String(url||"").match(/(BV[0-9A-Za-z]{10,})/i);
+      if(m)return{type:"bvid",id:m[1]};
+      var av=String(url||"").match(/(?:\/video\/|\b)av(\d+)/i);
+      return av?{type:"aid",id:av[1]}:null;
+    }
+
+    function isDouyinUrl(url){
+      try{
+        var u=new URL(normalizeUrl(url));
+        return/(^|\.)douyin\.com$/i.test(u.hostname);
+      }catch(e){return false}
+    }
+
+    function parseYouTubeId(url){
+      try{
+        var u=new URL(normalizeUrl(url));
+        if(/youtu\.be$/i.test(u.hostname))return u.pathname.split("/").filter(Boolean)[0]||"";
+        if(/(^|\.)youtube\.com$/i.test(u.hostname)||/(^|\.)youtube-nocookie\.com$/i.test(u.hostname)){
+          if(u.searchParams.get("v"))return u.searchParams.get("v");
+          var p=u.pathname.split("/").filter(Boolean);
+          if(["shorts","embed","live"].indexOf(p[0])>=0&&p[1])return p[1];
+        }
+      }catch(e){}
+      return"";
+    }
+
+    function parseVimeoId(url){
+      try{
+        var u=new URL(normalizeUrl(url));
+        if(!/(^|\.)vimeo\.com$/i.test(u.hostname))return"";
+        return u.pathname.split("/").filter(Boolean).reverse().find(function(p){return/^\d+$/.test(p)})||"";
+      }catch(e){return""}
+    }
+
+    function storageKey(url){return"gx-video-meta:"+cacheVersion+":"+normalizeUrl(url)}
+
+    function readPermanentCache(url){
+      try{
+        var raw=localStorage.getItem(storageKey(url));
+        return raw?normalizeMeta(JSON.parse(raw),url):null;
+      }catch(e){return null}
+    }
+
+    function writePermanentCache(url,data){
+      try{
+        var clean=normalizeMeta(data,url);
+        localStorage.setItem(storageKey(url),JSON.stringify(clean));
+        if(clean.originalUrl&&clean.originalUrl!==url)localStorage.setItem(storageKey(clean.originalUrl),JSON.stringify(clean));
+      }catch(e){}
+    }
+
+    function proxyMeta(url){
+      if(!metaEndpoint)return Promise.reject(new Error("未配置元数据接口"));
+      var normalized=normalizeUrl(url);
+      var cached=readPermanentCache(normalized);
+      if(cached)return Promise.resolve(cached);
+      if(metaProxyPending[normalized])return metaProxyPending[normalized];
+
+      var endpoint=metaEndpoint+(metaEndpoint.indexOf("?")>=0?"&":"?")+"url="+encodeURIComponent(normalized);
+      var request=fetchJson(endpoint).then(function(data){
+        var clean=normalizeMeta(data,normalized);
+        writePermanentCache(normalized,clean);
+        return clean;
+      }).finally(function(){delete metaProxyPending[normalized]});
+
+      metaProxyPending[normalized]=request;
+      return request;
+    }
+
+    async function resolveBilibili(url,id){
+      var api="https://api.bilibili.com/x/web-interface/view?"+(id.type==="bvid"?"bvid="+encodeURIComponent(id.id):"aid="+encodeURIComponent(id.id));
+      var payload=null;
+      try{payload=await fetchJson(api)}catch(e){try{payload=await jsonp(api)}catch(e2){}}
+      var data=payload&&payload.code===0?payload.data:null;
+      var player=id.type==="bvid"?"https://player.bilibili.com/player.html?isOutside=true&bvid="+encodeURIComponent(id.id)+"&p=1":"https://player.bilibili.com/player.html?isOutside=true&aid="+encodeURIComponent(id.id)+"&p=1";
+      return normalizeMeta({
+        kind:"embed",
+        provider:"B站",
+        originalUrl:url,
+        embedUrl:player+"&autoplay=1&danmaku=0",
+        posterEmbedUrl:player+"&poster=1&autoplay=0&danmaku=0",
+        thumbnail:data&&data.pic?String(data.pic).replace(/^http:/,"https:"):"",
+        title:data&&data.title?data.title:"B站视频",
+        description:data&&data.owner&&data.owner.name?"B站 · "+data.owner.name:"B站外部视频",
+        durationLabel:"B站",
+        stats:data&&data.stat?{
+          view:data.stat.view,
+          like:data.stat.like,
+          favorite:data.stat.favorite,
+          coin:data.stat.coin,
+          danmaku:data.stat.danmaku,
+          reply:data.stat.reply,
+          share:data.stat.share
+        }:{}
+      },url);
+    }
+
+    async function resolveYouTube(url,id){
+      var canonical="https://www.youtube.com/watch?v="+encodeURIComponent(id),title="YouTube 视频",desc="YouTube 外部视频";
+      try{var m=await fetchJson("https://www.youtube.com/oembed?format=json&url="+encodeURIComponent(canonical));if(m.title)title=m.title;if(m.author_name)desc="YouTube · "+m.author_name}catch(e){}
+      return normalizeMeta({kind:"embed",provider:"YouTube",originalUrl:url,embedUrl:"https://www.youtube-nocookie.com/embed/"+encodeURIComponent(id)+"?rel=0&autoplay=1",thumbnail:"https://i.ytimg.com/vi/"+encodeURIComponent(id)+"/hqdefault.jpg",title:title,description:desc,durationLabel:"YouTube"},url);
+    }
+
+    async function resolveVimeo(url,id){
+      var title="Vimeo 视频",desc="Vimeo 外部视频",thumb="";
+      try{var m=await fetchJson("https://vimeo.com/api/oembed.json?url="+encodeURIComponent(url));title=m.title||title;desc=m.author_name?"Vimeo · "+m.author_name:desc;thumb=m.thumbnail_url||""}catch(e){}
+      return normalizeMeta({kind:"embed",provider:"Vimeo",originalUrl:url,embedUrl:"https://player.vimeo.com/video/"+encodeURIComponent(id)+"?autoplay=1",thumbnail:thumb,title:title,description:desc,durationLabel:"Vimeo"},url);
+    }
+
+    async function resolveVideoLink(raw){
+      var value=normalizeUrl(raw);
+      if(!value)throw new Error("请先粘贴视频链接。");
+      var u;try{u=new URL(value)}catch(e){throw new Error("链接格式不正确。")}
+      var key=u.toString();
+      if(metaCache[key])return metaCache[key];
+
+      var result,b=parseBilibiliId(value),y=parseYouTubeId(value),v=parseVimeoId(value);
+      if(b)result=await resolveBilibili(value,b);
+      else if(isDouyinUrl(value))result=await proxyMeta(value);
+      else if(y)result=await resolveYouTube(value,y);
+      else if(v)result=await resolveVimeo(value,v);
+      else if(/\.(mp4|webm|ogg|m4v|mov|wav|mp3)(?:$|[?#])/i.test(u.pathname+u.search+u.hash))result=normalizeMeta({kind:"video",provider:"媒体直链",originalUrl:value,sourceUrl:value,title:"媒体文件",description:"浏览器原生播放",durationLabel:"媒体"},value);
+      else result=normalizeMeta({kind:"external",provider:"网页链接",originalUrl:value,title:"网页视频",description:"该站点暂时无法自动读取信息。",durationLabel:"链接"},value);
+
+      metaCache[key]=result;
+      return result;
+    }
+
+    function createCardBase(title,category,year,description,label){
+      var card=document.createElement("article"),media=document.createElement("div"),chip=document.createElement("span"),info=document.createElement("div"),copy=document.createElement("div"),h=document.createElement("h3"),p=document.createElement("p"),y=document.createElement("span");
+      card.className="work-card";media.className="work-media";chip.className="media-chip";chip.textContent=label||({motion:"影像 / 视频",sound:"声音 / 混音",content:"内容 / 运营",experimental:"实验项目"}[category]||"作品");
+      info.className="work-info";y.className="work-year";h.textContent=title;p.textContent=description||"新加入的作品。";y.textContent=year||"";
+      media.appendChild(chip);copy.append(h,p);info.append(copy,y);card.append(media,info);
+      return{card:card,media:media,copy:copy};
+    }
+
+    function addCover(media,url,title){
+      if(url){var img=document.createElement("img");img.src=normalizeUrl(url);img.alt=title+" 封面";img.loading="lazy";img.referrerPolicy="no-referrer";media.insertBefore(img,media.firstChild);return}
+      var ph=document.createElement("div");ph.className="media-placeholder";ph.innerHTML="<span>GX / HUANG</span><b></b><span>未配置静态封面</span>";ph.querySelector("b").textContent=title;media.insertBefore(ph,media.firstChild);
+    }
+
+    function makeIframe(src,title,provider){
+      var f=document.createElement("iframe");f.src=src;f.title=title||"视频";f.allow="autoplay; fullscreen; picture-in-picture";f.allowFullscreen=true;f.loading="lazy";
+      if(provider==="抖音")f.referrerPolicy="unsafe-url";
+      return f;
+    }
+
+    function activateMeta(base,meta,title){
+      var play=document.createElement("button");play.className="media-play";play.type="button";play.textContent=meta.embedUrl||meta.sourceUrl?"播放视频":"打开链接";
+      play.addEventListener("click",function(e){
+        e.stopPropagation();
+        if(meta.kind==="video"&&meta.sourceUrl){base.media.querySelectorAll("img,.media-placeholder,iframe,video").forEach(function(x){x.remove()});var v=document.createElement("video");v.src=meta.sourceUrl;v.controls=true;v.autoplay=true;v.playsInline=true;base.media.insertBefore(v,base.media.firstChild);play.remove()}
+        else if(meta.embedUrl){base.media.querySelectorAll("img,.media-placeholder,iframe,video").forEach(function(x){x.remove()});base.media.insertBefore(makeIframe(meta.embedUrl,title,meta.provider),base.media.firstChild);play.remove()}
+        else if(meta.originalUrl)window.open(meta.originalUrl,"_blank","noopener,noreferrer");
+      });
+      base.media.appendChild(play);
+    }
+
+    function insertLinkedCard(meta,title,category,year,description,cover,label){
+      meta=normalizeMeta(meta,meta&&meta.originalUrl);
+      var base=createCardBase(title,category,year,description||meta.description,label),finalCover=cover||meta.thumbnail||"";
+      if(finalCover)addCover(base.media,finalCover,title);
+      else if(meta.posterEmbedUrl){var f=makeIframe(meta.posterEmbedUrl,title+" 封面",meta.provider);f.tabIndex=-1;base.media.insertBefore(f,base.media.firstChild)}
+      else addCover(base.media,"",title);
+
+      var stats=createStats(meta.stats,"",statsSource(meta.provider,false),statsKeys(meta.provider,false));
+      if(stats)base.copy.appendChild(stats);
+      if(meta.originalUrl){var a=document.createElement("a");a.className="external-link";a.href=meta.originalUrl;a.target="_blank";a.rel="noopener noreferrer";a.textContent="打开原始链接 ↗";base.copy.appendChild(a)}
+      activateMeta(base,meta,title);workGrid.appendChild(base.card);
+    }
+
+    function collectionName(p){return[p.englishTitle,p.title].filter(Boolean).join(" / ")||"未命名合集"}
+    function collectionCountText(p){var w=Array.isArray(p.works)?p.works:[];return p.countLabel||(w.length?w.length+" 个作品":"作品合集")}
+
+    function insertCollection(project){
+      var title=collectionName(project),base=createCardBase(title,project.category||"sound",project.year||"",project.description||"",project.label||"作品合集");
+      base.card.classList.add("collection-card");
+      var stack=document.createElement("div");stack.className="collection-stack";
+      (project.works||[]).slice(0,3).forEach(function(work,i){
+        var item=document.createElement("div"),label=document.createElement("div");item.className="stack-item"+(work.cover?"":" is-placeholder");item.style.setProperty("--r",[-5,0,5][i]||"0deg");item.style.setProperty("--y",(i===1?"-8px":"0"));label.className="stack-label";label.textContent=work.title||"作品";item.appendChild(label);if(work.cover){var img=document.createElement("img");img.src=normalizeUrl(work.cover);img.loading="lazy";item.insertBefore(img,label)}stack.appendChild(item);
+      });
+      base.media.insertBefore(stack,base.media.firstChild);
+      var tag=document.createElement("span");tag.className="collection-tag";tag.textContent=collectionCountText(project)+" · 查看完整列表 →";base.copy.appendChild(tag);
+      var open=document.createElement("button");open.className="media-play";open.type="button";open.textContent="展开合集";open.addEventListener("click",function(e){e.stopPropagation();openCollection(project)});base.media.appendChild(open);
+      base.card.addEventListener("click",function(e){if(!e.target.closest("button,a,iframe,video"))openCollection(project)});
+      workGrid.appendChild(base.card);
+    }
+
+    function resetCollectionPlayer(){collectionPlayer.hidden=true;collectionPlayerMedia.innerHTML="";collectionPlayerTitle.textContent="";collectionPlayerDescription.textContent="";var old=collectionPlayerTitle.parentElement.querySelector(".video-stats");if(old)old.remove()}
+
+    async function playCollectionWork(work,index,row,button){
+      var url=String(work.video||"").trim();if(!url)return;
+      button.disabled=true;
+      try{
+        var meta=work.meta?normalizeMeta(work.meta,url):await resolveVideoLink(url);
+        collectionPlayerMedia.innerHTML="";
+        if(meta.kind==="video"&&meta.sourceUrl){var v=document.createElement("video");v.src=meta.sourceUrl;v.controls=true;v.autoplay=true;v.playsInline=true;collectionPlayerMedia.appendChild(v)}
+        else if(meta.embedUrl)collectionPlayerMedia.appendChild(makeIframe(meta.embedUrl,work.title||meta.title,meta.provider));
+        else{var box=document.createElement("div"),a=document.createElement("a");box.className="collection-player-fallback";a.href=meta.originalUrl||url;a.target="_blank";a.textContent="无法内嵌，点击打开原始链接 ↗";box.appendChild(a);collectionPlayerMedia.appendChild(box)}
+        collectionPlayerKicker.textContent="正在播放 · "+String(index+1).padStart(2,"0");collectionPlayerTitle.textContent=work.title||meta.title;collectionPlayerDescription.textContent=work.description||work.role||meta.description||"";
+        var stats=createStats(meta.stats,"is-player",statsSource(meta.provider,true),statsKeys(meta.provider,true));if(stats)collectionPlayerTitle.parentElement.appendChild(stats);
+        collectionPlayerLink.href=meta.originalUrl||url;collectionPlayer.hidden=false;
+      }catch(e){showToast(e.message||"无法读取这个视频链接。")}
+      finally{button.disabled=false}
+    }
+
+    function hydrateRowStats(work,main){
+      var url=String(work&&work.video||"").trim();if(!url)return;
+      var promise=work.meta?Promise.resolve(normalizeMeta(work.meta,url)):((parseBilibiliId(url)||isDouyinUrl(url))?resolveVideoLink(url):Promise.resolve(null));
+      promise.then(function(meta){if(!meta)return;var stats=createStats(meta.stats,"collection-row-stats",statsSource(meta.provider,false),statsKeys(meta.provider,false));if(stats)main.appendChild(stats)}).catch(function(){});
+    }
+
+    function openCollection(project){
+      var works=Array.isArray(project.works)?project.works:[];worksHead.hidden=true;workGrid.hidden=true;collectionView.hidden=false;resetCollectionPlayer();collectionEyebrow.textContent=(project.label||"作品合集")+(project.year?" · "+project.year:"");collectionTitle.textContent=collectionName(project);collectionDescription.textContent=project.collectionDescription||project.description||"";collectionCount.textContent=collectionCountText(project);collectionList.innerHTML="";
+      works.forEach(function(work,i){var row=document.createElement("article"),num=document.createElement("span"),main=document.createElement("div"),h=document.createElement("h3"),p=document.createElement("p"),year=document.createElement("span"),play=document.createElement("button");row.className="collection-item";num.textContent=String(i+1).padStart(2,"0");main.className="collection-item-main";h.textContent=work.title||"作品";p.textContent=work.role||work.description||"";main.appendChild(h);if(p.textContent)main.appendChild(p);year.className="collection-item-year";year.textContent=work.year||"";play.className="collection-play";play.type="button";play.textContent=work.video?"播放":"待配置";play.disabled=!work.video;play.addEventListener("click",function(){playCollectionWork(work,i,row,play)});row.append(num,main,year,play);collectionList.appendChild(row);hydrateRowStats(work,main)});
+      $("#works").scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    collectionBack.addEventListener("click",function(){resetCollectionPlayer();collectionView.hidden=true;workGrid.hidden=false;worksHead.hidden=false;$("#works").scrollIntoView({behavior:"smooth",block:"start"});});
+
+    async function renderProjects(){
+      workGrid.innerHTML="";
+      var projects=window.PORTFOLIO_PROJECTS||[];
+      for(var i=0;i<projects.length;i++){
+        var p=projects[i],title=[p.englishTitle,p.title].filter(Boolean).join(" / ")||"未命名作品";
+        if(p.type==="collection"||Array.isArray(p.works)){insertCollection(p);continue}
+        var meta=null,url=String(p.video||"").trim();
+        try{
+          if(p.meta)meta=normalizeMeta(p.meta,url);
+          else if(url)meta=await resolveVideoLink(url);
+        }catch(e){console.warn("无法读取外部视频信息：",url,e)}
+        if(meta)insertLinkedCard(meta,title,p.category||"motion",p.year||"",p.description||"",p.cover||"",p.label||"");
+        else{var base=createCardBase(title,p.category||"motion",p.year||"",p.description||"",p.label||"");addCover(base.media,p.cover||"",title);workGrid.appendChild(base.card)}
+      }
+    }
+
+    function renderLinkPreview(meta){
+      linkPreviewMedia.innerHTML="";
+      if(meta.thumbnail){var img=document.createElement("img");img.src=meta.thumbnail;img.alt="";img.referrerPolicy="no-referrer";linkPreviewMedia.appendChild(img)}
+      else if(meta.posterEmbedUrl){var f=makeIframe(meta.posterEmbedUrl,"视频封面预览",meta.provider);f.tabIndex=-1;linkPreviewMedia.appendChild(f)}
+      else if(meta.kind==="video"&&meta.sourceUrl){var vid=document.createElement("video");vid.src=meta.sourceUrl;vid.muted=true;vid.playsInline=true;linkPreviewMedia.appendChild(vid)}
+      else{var blank=document.createElement("div");blank.className="media-placeholder";blank.innerHTML="<span>外部视频</span><b>暂无平台封面</b><span>可上传自己的封面</span>";linkPreviewMedia.appendChild(blank)}
+      var old=linkPreview.querySelector(".link-preview-stats");if(old)old.remove();var stats=createStats(meta.stats,"link-preview-stats",statsSource(meta.provider,false),statsKeys(meta.provider,false));if(stats)linkPreview.appendChild(stats);linkPreviewTitle.textContent=meta.title||"视频预览";linkProvider.textContent=meta.provider||"链接";linkPreview.classList.add("show");
+    }
+
+    async function readVideoLink(){
+      selectedLink=null;linkStatus.className="link-status";linkStatus.textContent="正在读取视频信息…";resolveLinkButton.disabled=true;
+      try{
+        var raw=videoLinkInput.value,wasCached=isDouyinUrl(raw)&&!!readPermanentCache(raw),meta=await resolveVideoLink(raw);selectedLink=meta;renderLinkPreview(meta);linkStatus.className="link-status ok";
+        if(meta.provider==="抖音")linkStatus.textContent=wasCached?"已使用浏览器永久缓存；没有再次请求抖音数据。":"已读取抖音数据并永久保存到当前浏览器。";
+        else if(meta.provider==="B站"&&hasStats(meta.stats))linkStatus.textContent="已读取 B站当前数据。";
+        else linkStatus.textContent="已读取视频信息。";
+        return meta;
+      }catch(e){linkStatus.className="link-status error";linkStatus.textContent=e.message||"无法读取这个链接。";return null}
+      finally{resolveLinkButton.disabled=false}
+    }
+
+    function setModal(open){modal.classList.toggle("open",open);modal.setAttribute("aria-hidden",open?"false":"true");document.body.classList.toggle("modal-open",open)}
+    $$("[data-open-upload]").forEach(function(b){b.addEventListener("click",function(){setModal(true)})});
+    $$("[data-close-modal]").forEach(function(b){b.addEventListener("click",function(){setModal(false)})});
+
+    function setSourceMode(mode){sourceMode=mode==="link"?"link":"file";sourceTabs.forEach(function(tab){tab.classList.toggle("active",tab.dataset.sourceMode===sourceMode)});sourcePanels.forEach(function(p){p.hidden=p.dataset.sourcePanel!==sourceMode})}
+    sourceTabs.forEach(function(tab){tab.addEventListener("click",function(){setSourceMode(tab.dataset.sourceMode)})});
+
+    fileInput.addEventListener("change",function(){var file=fileInput.files[0];if(!file)return;selectedFile=file;if(videoObjectUrl)URL.revokeObjectURL(videoObjectUrl);videoObjectUrl=URL.createObjectURL(file);videoPreview.src=videoObjectUrl;previewBox.classList.add("show");fileState.textContent=file.name});
+    coverInput.addEventListener("change",function(){var file=coverInput.files[0];if(!file)return;if(coverObjectUrl)URL.revokeObjectURL(coverObjectUrl);coverObjectUrl=URL.createObjectURL(file);coverPreviewImage.src=coverObjectUrl;coverPreview.classList.add("show");coverState.textContent=file.name});
+    removeCover.addEventListener("click",function(){coverObjectUrl=null;coverInput.value="";coverPreview.classList.remove("show")});
+    resolveLinkButton.addEventListener("click",readVideoLink);
+
+    form.addEventListener("submit",async function(e){
+      e.preventDefault();
+      var title=$("#video-title").value.trim()||"未命名作品",category=$("#video-category").value,year=$("#video-year").value||"2026",description=$("#video-description").value.trim();
+      if(sourceMode==="link"){
+        if(!selectedLink)selectedLink=await readVideoLink();if(!selectedLink)return;insertLinkedCard(selectedLink,title,category,year,description,coverObjectUrl||"","");setModal(false);showToast("链接作品已加入当前预览。");return;
+      }
+      if(!selectedFile)return showToast("请先选择视频文件。");
+      insertLinkedCard(normalizeMeta({kind:"video",provider:"本地视频",originalUrl:videoObjectUrl,sourceUrl:videoObjectUrl,title:title},videoObjectUrl),title,category,year,description,coverObjectUrl||"","");setModal(false);showToast("本地视频已加入当前预览。");
+    });
+
+    renderProjects().catch(function(e){console.error(e)});
+  }());
   </script>
 </body>
 </html>
