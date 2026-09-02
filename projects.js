@@ -46,14 +46,14 @@ window.PORTFOLIO_PROJECTS = [
   },
   {
     type: "collection",
-    title: "燕语配音社",
-    englishTitle: "VOICE GRID",
+    title: "燕语配音社（某亦声工作室）/优思铭想工作室",
+    englishTitle: "VOICE / AUDIO",
     year: "2019–23",
     category: "sound",
-    label: "广播剧后期",
+    label: "视频/广播剧后期",
     countLabel: "15+ 部广播剧",
-    description: "北京大学 · 广播剧后期制作，涵盖剪辑、对白编辑、混音、音效与配乐。",
-    collectionDescription: "这里集中展示燕语配音社期间参与制作的广播剧与声音作品。点击列表中的作品即可在当前页面播放。",
+    description: "北京大学燕语配音社丨技术部部长：涵盖广播剧后期制作、视频剪辑；  优思铭想工作室：广播剧后期制作，对白编辑、混音、音效与配乐",
+    collectionDescription: "这里集中展示在燕语配音社（某亦声工作室）/优思铭想工作室期间参与制作的广播剧与声音作品。点击列表中的作品即可在当前页面播放。",
 
     /*
        在下面 works 数组里继续复制项目即可。
@@ -72,20 +72,20 @@ window.PORTFOLIO_PROJECTS = [
         video: "bilibili.com/video/BV1a7411R7aM"
       },
       {
-        title: "广播剧作品 02",
+        title: "【广播剧】逆光",
         year: "2022",
-        role: "后期剪辑 / 配乐",
-        description: "把这里替换成作品简介。",
-        cover: "",
-        video: ""
+        role: "音频总后期",
+        description: "她在深渊中挣扎，她逆光而来，她跟着那道光，看到了新的希望，也借着那道光，成为了她理想中的自己。",
+        cover: "raw.githubusercontent.com/Williamgxhuang/Video/assets/covers//1788381407157.jpg",
+        video: "https://github.com/Williamgxhuang/Video/releases/download/Media/Niguang.wav"
       },
       {
-        title: "广播剧作品 03",
+        title: "【广播剧】高冷仙君的那啥竟然开口说话了？！",
         year: "2021",
-        role: "对白编辑 / 混音",
-        description: "把这里替换成作品简介。",
+        role: "音频总后期",
+        description: "高冷禁欲系牌面级仙君，某天修行结束，突然发现自己的那啥开口说话了。",
         cover: "",
-        video: ""
+        video: "https://www.missevan.com/mdrama/45947"
       }
     ]
   }
