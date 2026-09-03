@@ -140,7 +140,7 @@ window.PORTFOLIO_PROJECTS = [
         description:
           "她在深渊中挣扎，她逆光而来，她跟着那道光，看到了新的希望，也借着那道光，成为了她理想中的自己。",
         cover:
-          "raw.githubusercontent.com/Williamgxhuang/Video/assets/covers/1788381407157.jpg",
+          "https://raw.githubusercontent.com/Williamgxhuang/Video/main/assets/covers/1788381407157.jpg",
         video:
           "https://github.com/Williamgxhuang/Video/releases/download/Media/Niguang.wav"
       },
