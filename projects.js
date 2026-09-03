@@ -166,7 +166,7 @@ window.PORTFOLIO_PROJECTS = [
         role: "音频总后期",
         description:
           "高冷禁欲系牌面级仙君，某天修行结束，突然发现自己的那啥开口说话了。",
-        cover: "assets/covers/0c6b24aed1d140a513f809b814a417c3202407.jpg",
+        cover: "assets/covers/0c6b24aed1d140a513f809b814a417c3202407.jpg?v=2",
         video: "https://www.missevan.com/sound/player?id=4695189"
       }
     ]
