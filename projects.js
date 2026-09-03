@@ -139,8 +139,10 @@ window.PORTFOLIO_PROJECTS = [
         role: "音频总后期",
         description:
           "她在深渊中挣扎，她逆光而来，她跟着那道光，看到了新的希望，也借着那道光，成为了她理想中的自己。",
-        cover:"assets/covers/1788381407157.jpg",
-        video:"https://github.com/Williamgxhuang/Video/releases/download/Media/Niguang.wav", 
+        cover: "assets/covers/1788381407157.jpg",
+        video: "https://github.com/Williamgxhuang/Video/releases/download/Media/Niguang.wav",
+
+        /* 手动填写的作品数据；null 表示不显示该项。 */
         meta: {
           kind: "video",
           provider: "项目数据",
@@ -150,12 +152,12 @@ window.PORTFOLIO_PROJECTS = [
           description: "音频总后期",
           stats: {
             view: 7800,
-            follow: 1500 ,
+            follow: 1500,
             favorite: null,
             reply: 81,
             share: null
-              }
-            },
+          }
+        }
       },
 
       {
