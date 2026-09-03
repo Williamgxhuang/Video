@@ -282,10 +282,16 @@
 
     function normalizeUrl(raw){
       var value=String(raw||"").trim();
-      if(!value)return"";
-      if(value.indexOf("assets/")===0||value.indexOf("./")===0||value.indexOf("../")===0||value.indexOf("/")===0)return value;
-      if(!/^https?:\/\//i.test(value))value="https://"+value;
+      if(value&&!/^https?:\/\//i.test(value))value="https://"+value;
       return value;
+    }
+
+    function coverUrl(raw){
+      var value=String(raw||"").trim();
+      if(!value)return"";
+      if(/^blob:/i.test(value)||/^data:/i.test(value))return value;
+      if(value.indexOf("assets/")===0||value.indexOf("./")===0||value.indexOf("../")===0||value.indexOf("/")===0)return value;
+      return normalizeUrl(value);
     }
 
     function cleanNumber(v){
@@ -349,7 +355,7 @@
       if(provider==="B站"&&player)return["view","like","favorite","coin","danmaku"];
       if(provider==="B站")return["view","like","favorite","danmaku"];
       if(provider==="项目数据")return["view","follow","like","favorite","reply","share"];
-      return["view","follow","like","favorite","reply","share"];
+      return["view","like","favorite","reply","share"];
     }
 
     function createStats(stats,className,source,keys){
@@ -572,7 +578,7 @@
     }
 
     function addCover(media,url,title){
-      if(url){var img=document.createElement("img");img.src=normalizeUrl(url);img.alt=title+" 封面";img.loading="lazy";img.referrerPolicy="no-referrer";media.insertBefore(img,media.firstChild);return}
+      if(url){var img=document.createElement("img");img.src=coverUrl(url);img.alt=title+" 封面";img.loading="lazy";img.referrerPolicy="no-referrer";media.insertBefore(img,media.firstChild);return}
       var ph=document.createElement("div");ph.className="media-placeholder";ph.innerHTML="<span>GX / HUANG</span><b></b><span>未配置静态封面</span>";ph.querySelector("b").textContent=title;media.insertBefore(ph,media.firstChild);
     }
 
@@ -628,7 +634,7 @@
           var old=item.querySelector("img");
           if(old)old.remove();
           var img=document.createElement("img");
-          img.src=normalizeUrl(url);
+          img.src=coverUrl(url);
           img.alt=(work.title||"作品")+" 封面";
           img.loading="lazy";
           img.referrerPolicy="no-referrer";
