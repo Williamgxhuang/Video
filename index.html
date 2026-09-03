@@ -111,7 +111,10 @@
     .collection-player-copy p{white-space:pre-line;max-width:700px;margin:0;color:#747972}
     .collection-player-link{align-self:end;color:var(--accent);text-decoration:underline}
     .collection-list{margin-top:64px;border-top:1px solid rgba(28,32,29,.14)}
-    .collection-item{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(92px,auto) minmax(116px,auto);gap:24px;align-items:center;min-height:116px;padding:27px 4px;border-bottom:1px solid rgba(28,32,29,.12)}
+    .collection-item{display:grid;grid-template-columns:52px 112px minmax(0,1fr) minmax(92px,auto) minmax(116px,auto);gap:22px;align-items:center;min-height:116px;padding:27px 4px;border-bottom:1px solid rgba(28,32,29,.12)}
+    .collection-thumb{width:112px;aspect-ratio:16/9;overflow:hidden;display:grid;place-items:center;border:1px solid rgba(28,32,29,.12);border-radius:7px;background:#ddd8cd}
+    .collection-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+    .collection-thumb span{padding:8px;color:#8a8e87;font-size:10px;line-height:1.3;text-align:center}
     .collection-item-main h3{margin:0 0 9px;font-size:20.5px}
     .collection-item-main p{white-space:pre-line;margin:0;color:#777c75;font-size:15px}
     .collection-item-year{color:#8d705c;font:650 13.5px/1.4 ui-monospace,Consolas,monospace}
@@ -166,7 +169,8 @@
       .hero-grid,.section-head,.collection-hero,.collection-player-copy{grid-template-columns:1fr}
       .hero-side{padding-left:0;border-left:0}
       .work-grid{grid-template-columns:1fr}
-      .collection-item{grid-template-columns:44px minmax(0,1fr) auto}
+      .collection-item{grid-template-columns:40px 96px minmax(0,1fr) auto;gap:18px}
+      .collection-thumb{width:96px}
       .collection-item-year{display:none}
     }
     @media(max-width:620px){
@@ -177,6 +181,9 @@
       .hero h1{font-size:clamp(48px,15.3vw,72px)}
       .section{padding:94px 0}
       .work-info{grid-template-columns:1fr}
+      .collection-item{grid-template-columns:30px 84px minmax(0,1fr);gap:12px}
+      .collection-thumb{width:84px}
+      .collection-play{grid-column:3;justify-self:start}
       .field-row,.link-row{grid-template-columns:1fr}
       .form-foot{align-items:stretch;flex-direction:column}
     }
@@ -190,10 +197,12 @@
       <button class="header-action" type="button" data-open-upload>＋ 临时预览</button>
     </div>
   </header>
+
   <main>
     <section class="hero" id="home">
       <div class="shell">
         <div class="hero-grid">
+
           <div>
             <p class="eyebrow">GX/HUANG · 个人作品集</p>
             <h1>
@@ -201,6 +210,7 @@
               <span>内容作品。</span>
             </h1>
           </div>
+
           <div class="hero-side">
             <p>
               聚焦品牌影像、声音设计、后期制作与内容项目，
@@ -212,7 +222,7 @@
                 查看作品
               </a>
             </div>
- 
+
             <p class="hero-tags">
               品牌影像 · 声音设计 · 后期制作 · 内容运营
             </p>
@@ -704,9 +714,81 @@
       promise.then(function(meta){if(!meta)return;var stats=createStats(meta.stats,"collection-row-stats",statsSource(meta.provider,false),statsKeys(meta.provider,false));if(stats)main.appendChild(stats)}).catch(function(){});
     }
 
+    function setCollectionThumbnail(work,thumb){
+      function useImage(url){
+        if(!url)return;
+        thumb.innerHTML="";
+        var img=document.createElement("img");
+        img.src=coverUrl(url);
+        img.alt=(work.title||"作品")+" 封面";
+        img.loading="lazy";
+        img.referrerPolicy="no-referrer";
+        img.onerror=function(){thumb.innerHTML="<span>暂无封面</span>";thumb.classList.add("is-placeholder")};
+        thumb.appendChild(img);
+        thumb.classList.remove("is-placeholder");
+      }
+
+      if(work.cover){
+        useImage(work.cover);
+        return;
+      }
+
+      var url=String(work.video||"").trim();
+      if(!url)return;
+      resolveVideoLink(url).then(function(meta){
+        if(meta&&meta.thumbnail)useImage(meta.thumbnail);
+      }).catch(function(){});
+    }
+
     function openCollection(project){
-      var works=Array.isArray(project.works)?project.works:[];worksHead.hidden=true;workGrid.hidden=true;collectionView.hidden=false;resetCollectionPlayer();collectionEyebrow.textContent=(project.label||"作品合集")+(project.year?" · "+project.year:"");collectionTitle.textContent=collectionName(project);collectionDescription.textContent=project.collectionDescription||project.description||"";collectionCount.textContent=collectionCountText(project);collectionList.innerHTML="";
-      works.forEach(function(work,i){var row=document.createElement("article"),num=document.createElement("span"),main=document.createElement("div"),h=document.createElement("h3"),p=document.createElement("p"),year=document.createElement("span"),play=document.createElement("button");row.className="collection-item";num.textContent=String(i+1).padStart(2,"0");main.className="collection-item-main";h.textContent=work.title||"作品";p.textContent=work.role||work.description||"";main.appendChild(h);if(p.textContent)main.appendChild(p);year.className="collection-item-year";year.textContent=work.year||"";play.className="collection-play";play.type="button";play.textContent=work.video?"播放":"待配置";play.disabled=!work.video;play.addEventListener("click",function(){playCollectionWork(work,i,row,play)});row.append(num,main,year,play);collectionList.appendChild(row);hydrateRowStats(work,main)});
+      var works=Array.isArray(project.works)?project.works:[];
+      worksHead.hidden=true;
+      workGrid.hidden=true;
+      collectionView.hidden=false;
+      resetCollectionPlayer();
+      collectionEyebrow.textContent=(project.label||"作品合集")+(project.year?" · "+project.year:"");
+      collectionTitle.textContent=collectionName(project);
+      collectionDescription.textContent=project.collectionDescription||project.description||"";
+      collectionCount.textContent=collectionCountText(project);
+      collectionList.innerHTML="";
+
+      works.forEach(function(work,i){
+        var row=document.createElement("article"),
+            num=document.createElement("span"),
+            thumb=document.createElement("div"),
+            main=document.createElement("div"),
+            h=document.createElement("h3"),
+            p=document.createElement("p"),
+            year=document.createElement("span"),
+            play=document.createElement("button");
+
+        row.className="collection-item";
+        num.textContent=String(i+1).padStart(2,"0");
+
+        thumb.className="collection-thumb is-placeholder";
+        thumb.innerHTML="<span>暂无封面</span>";
+
+        main.className="collection-item-main";
+        h.textContent=work.title||"作品";
+        p.textContent=work.role||work.description||"";
+        main.appendChild(h);
+        if(p.textContent)main.appendChild(p);
+
+        year.className="collection-item-year";
+        year.textContent=work.year||"";
+
+        play.className="collection-play";
+        play.type="button";
+        play.textContent=work.video?"播放":"待配置";
+        play.disabled=!work.video;
+        play.addEventListener("click",function(){playCollectionWork(work,i,row,play)});
+
+        row.append(num,thumb,main,year,play);
+        collectionList.appendChild(row);
+        setCollectionThumbnail(work,thumb);
+        hydrateRowStats(work,main);
+      });
+
       $("#works").scrollIntoView({behavior:"smooth",block:"start"});
     }
 
