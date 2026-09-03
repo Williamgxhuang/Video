@@ -139,10 +139,8 @@ window.PORTFOLIO_PROJECTS = [
         role: "音频总后期",
         description:
           "她在深渊中挣扎，她逆光而来，她跟着那道光，看到了新的希望，也借着那道光，成为了她理想中的自己。",
-        cover:
-          "https://raw.githubusercontent.com/Williamgxhuang/Video/main/assets/covers/1788381407157.jpg",
-        video:
-          "https://github.com/Williamgxhuang/Video/releases/download/Media/Niguang.wav"
+        cover:"assets/covers/1788381407157.jpg",
+        video:"https://github.com/Williamgxhuang/Video/releases/download/Media/Niguang.wav"
       },
 
       {
