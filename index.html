@@ -282,11 +282,14 @@
 
     function normalizeUrl(raw){
       var value=String(raw||"").trim();
-      if(value&&!/^https?:\/\//i.test(value))value="https://"+value;
+      if(!value)return"";
+      if(value.indexOf("assets/")===0||value.indexOf("./")===0||value.indexOf("../")===0||value.indexOf("/")===0)return value;
+      if(!/^https?:\/\//i.test(value))value="https://"+value;
       return value;
     }
 
     function cleanNumber(v){
+      if(v===null||v===undefined||v==="")return null;
       var n=Number(v);
       return Number.isFinite(n)&&n>=0?n:null;
     }
@@ -295,6 +298,7 @@
       raw=raw||{};
       return{
         view:cleanNumber(raw.view),
+        follow:cleanNumber(raw.follow),
         like:cleanNumber(raw.like),
         favorite:cleanNumber(raw.favorite),
         coin:cleanNumber(raw.coin),
@@ -336,6 +340,7 @@
     function statsSource(provider,player){
       if(provider==="B站")return player?"B站当前数据":"B站数据";
       if(provider==="抖音")return player?"抖音快照":"抖音数据";
+      if(provider==="项目数据")return"项目数据";
       return"平台数据";
     }
 
@@ -343,12 +348,13 @@
       if(provider==="抖音")return["view","like","favorite","reply","share"];
       if(provider==="B站"&&player)return["view","like","favorite","coin","danmaku"];
       if(provider==="B站")return["view","like","favorite","danmaku"];
-      return["view","like","favorite","reply","share"];
+      if(provider==="项目数据")return["view","follow","like","favorite","reply","share"];
+      return["view","follow","like","favorite","reply","share"];
     }
 
     function createStats(stats,className,source,keys){
       if(!hasStats(stats))return null;
-      var labels={view:"播放",like:"点赞",favorite:"收藏",coin:"投币",danmaku:"弹幕",reply:"评论",share:"分享"};
+      var labels={view:"播放",follow:"追剧人数",like:"点赞",favorite:"收藏",coin:"投币",danmaku:"弹幕",reply:"评论",share:"分享"};
       var wrap=document.createElement("div");
       wrap.className="video-stats"+(className?" "+className:"");
       wrap.dataset.source=source||"平台数据";
